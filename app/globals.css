@@ -52,6 +52,11 @@ html[data-theme="light"] {
 
 * { box-sizing: border-box; }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
@@ -97,6 +102,8 @@ body {
 .btn-ghost:hover { background: var(--ink); color: var(--bg); }
 .btn-dark { background: var(--brand-dark); color: var(--brand-dark-ink); border-color: var(--brand-dark); }
 .btn-dark:hover { opacity: .9; }
+.btn-ghost-on-dark { background: transparent; border-color: color-mix(in srgb, var(--brand-dark-ink) 40%, transparent); color: var(--brand-dark-ink); }
+.btn-ghost-on-dark:hover { background: color-mix(in srgb, var(--brand-dark-ink) 10%, transparent); }
 
 .card {
   background: var(--bg-elevated);
