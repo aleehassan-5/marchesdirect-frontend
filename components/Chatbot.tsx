@@ -69,7 +69,7 @@ export function Chatbot() {
 
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-[52px] h-[52px] rounded-full bg-gold text-gold-ink flex items-center justify-center shadow-2xl hover:bg-gold-strong transition-colors"
+        className="w-[52px] h-[52px] rounded-full bg-gold text-gold-ink flex items-center justify-center shadow-2xl ring-4 ring-bg hover:bg-gold-strong transition-colors"
         aria-label={t("chat_open")}
       >
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
