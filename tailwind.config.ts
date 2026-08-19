@@ -17,6 +17,8 @@ const config: Config = {
         gold: "var(--gold)",
         "gold-strong": "var(--gold-strong)",
         "gold-ink": "var(--gold-ink)",
+        "brand-dark": "var(--brand-dark)",
+        "brand-dark-ink": "var(--brand-dark-ink)",
       },
       fontFamily: {
         display: ["var(--font-display)"],
@@ -24,7 +26,7 @@ const config: Config = {
         mono: ["var(--font-mono)"],
       },
       borderRadius: {
-        card: "14px",
+        card: "10px",
       },
     },
   },

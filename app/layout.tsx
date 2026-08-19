@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Libre_Franklin, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Archivo_Black, Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/lib/i18n";
 import { Chatbot } from "@/components/Chatbot";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import "./globals.css";
 
-const libreFranklin = Libre_Franklin({
+const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400"],
   variable: "--font-display",
 });
 
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" data-theme="dark" className={`${libreFranklin.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html lang="fr" data-theme="light" className={`${archivoBlack.variable} ${inter.variable} ${plexMono.variable}`}>
       <body className="pb-[64px] md:pb-0">
         <ThemeProvider>
           <LanguageProvider>

@@ -48,7 +48,7 @@ export function Header() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? t("nav_menu_close") : t("nav_menu_open")}
-            className="md:hidden w-[34px] h-[34px] rounded-full border border-border bg-bg-elevated flex items-center justify-center text-ink-soft hover:border-gold hover:text-gold transition-colors"
+            className="md:hidden w-[34px] h-[34px] rounded-lg border border-border bg-bg-elevated flex items-center justify-center text-ink-soft hover:border-gold hover:text-gold transition-colors"
           >
             {open ? (
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
