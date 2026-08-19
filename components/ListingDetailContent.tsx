@@ -54,14 +54,14 @@ export function ListingDetailContent({ listing, journeyKey }: { listing: Listing
         </div>
       </div>
 
-      <div className="mt-8 card p-6">
+      <div className={`mt-8 p-6 ${isAnalyzed ? "panel-dark" : "card"}`}>
         <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
           <h2 className="font-display font-bold text-[17px]">{t("detail_ai_summary")}</h2>
           {isAnalyzed && <span className="ai-badge">{t("ai_draft_badge")}</span>}
         </div>
         {isAnalyzed ? (
           <p
-            className="text-ink-soft text-[14.5px] leading-relaxed"
+            className="text-[14.5px] leading-relaxed opacity-80"
             dangerouslySetInnerHTML={{
               __html: t("detail_ai_analyzed", { trade: listing.trade, distance: listing.distanceKm }),
             }}

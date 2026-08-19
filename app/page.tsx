@@ -47,13 +47,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="max-w-[1180px] mx-auto px-5">
-        <StatsStrip />
-      </div>
+      <StatsStrip />
 
-      <div className="max-w-[1180px] mx-auto px-5">
-        <HowItWorks />
-      </div>
+      <HowItWorks />
 
       <div className="max-w-[1180px] mx-auto px-5">
         <CTA />

@@ -73,25 +73,25 @@ export function TodayActions({
   }
 
   return (
-    <div className="card p-5">
+    <div className="panel-dark p-5">
       <div className="flex items-center justify-between mb-1">
         <h2 className="font-display font-bold text-[16px]">{t("today_title")}</h2>
       </div>
-      <p className="text-ink-soft text-[13px] mb-4">{t("today_sub")}</p>
+      <p className="text-[13px] mb-4 opacity-75">{t("today_sub")}</p>
 
       {actions.length === 0 ? (
-        <p className="text-[13.5px] text-ink-soft">{t("today_all_done")}</p>
+        <p className="text-[13.5px] opacity-75">{t("today_all_done")}</p>
       ) : (
         <div className="flex flex-col gap-2.5">
           {actions.map((a) => (
             <Link
               key={a.key}
               href={a.href}
-              className="flex items-center justify-between gap-3 border border-border-soft rounded-[10px] px-4 py-3 hover:border-gold transition-colors"
+              className="flex items-center justify-between gap-3 border border-brand-dark-ink/20 rounded-[10px] px-4 py-3 hover:border-gold transition-colors"
             >
               <div className="flex items-center gap-2.5 min-w-0">
                 <span
-                  className={`shrink-0 w-2 h-2 rounded-full ${a.priority === "high" ? "bg-gold" : "bg-ink-faint"}`}
+                  className={`shrink-0 w-2 h-2 rounded-full ${a.priority === "high" ? "bg-gold" : "bg-brand-dark-ink/40"}`}
                   aria-hidden
                 />
                 <span className="text-[13.5px] truncate">{t(a.labelKey, a.vars)}</span>
