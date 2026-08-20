@@ -3,50 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --font-display: 'Archivo Black', system-ui, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
 html[data-theme="dark"] {
-  --bg: #0d1f14;
-  --bg-elevated: #122a1b;
-  --bg-elevated-2: #163422;
-  --border: #2c4a37;
-  --border-soft: #223a2a;
-  --ink: #f3f4e9;
-  --ink-soft: #b7c2b0;
-  --ink-faint: #7c8a7c;
-  --gold: #c3e05a;
-  --gold-strong: #d5f072;
-  --gold-ink: #10200f;
-  --brand-dark: #0d1f14;
-  --brand-dark-ink: #f3f4e9;
-  --card-1: #c3e05a;
-  --card-2: #6f8fae;
-  --card-3: #d99a4e;
-  --warning: #d99a4e;
-  --danger: #c1603f;
+  --bg: #060f1a;
+  --bg-elevated: #0c1929;
+  --bg-elevated-2: #112135;
+  --border: #1c2c40;
+  --border-soft: #16233a;
+  --ink: #fcffff;
+  --ink-soft: #8491a2;
+  --ink-faint: #5c6b7e;
+  --gold: #f87f30;
+  --gold-strong: #ff9550;
+  --gold-ink: #fcffff;
+  --brand-dark: #0c1929;
+  --brand-dark-ink: #fcffff;
+  --card-1: #f87f30;
+  --card-2: #f87f30;
+  --card-3: #f87f30;
+  --warning: #f87f30;
+  --danger: #e0573a;
 }
 
 html[data-theme="light"] {
-  --bg: #f5f2e8;
+  --bg: #f4f6f9;
   --bg-elevated: #ffffff;
-  --bg-elevated-2: #eeead9;
-  --border: #14170f;
-  --border-soft: #d8d3bf;
-  --ink: #14170f;
-  --ink-soft: #4a4c3f;
-  --ink-faint: #85846d;
-  --gold: #b6d63a;
-  --gold-strong: #9fc02a;
-  --gold-ink: #12190c;
-  --brand-dark: #0d2818;
-  --brand-dark-ink: #f5f2e8;
-  --card-1: #7f9b2e;
-  --card-2: #4c7085;
-  --card-3: #965e39;
-  --warning: #a5701f;
+  --bg-elevated-2: #eaeef4;
+  --border: #dbe1ea;
+  --border-soft: #e7ebf1;
+  --ink: #0c1929;
+  --ink-soft: #4c5b6e;
+  --ink-faint: #8491a2;
+  --gold: #f87f30;
+  --gold-strong: #e56b1e;
+  --gold-ink: #fcffff;
+  --brand-dark: #0c1929;
+  --brand-dark-ink: #fcffff;
+  --card-1: #f87f30;
+  --card-2: #f87f30;
+  --card-3: #f87f30;
+  --warning: #b5651f;
   --danger: #a3452a;
 }
 
@@ -91,7 +91,7 @@ body {
   font-weight: 700;
   font-size: 14px;
   padding: 12px 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   border: 1.5px solid transparent;
   white-space: nowrap;
@@ -99,8 +99,8 @@ body {
 }
 .btn-gold { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); }
 .btn-gold:hover { background: var(--gold-strong); border-color: var(--gold-strong); }
-.btn-ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
-.btn-ghost:hover { background: var(--ink); color: var(--bg); }
+.btn-ghost { background: transparent; border-color: var(--gold); color: var(--gold); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--gold) 12%, transparent); }
 .btn-dark { background: var(--brand-dark); color: var(--brand-dark-ink); border-color: var(--brand-dark); }
 .btn-dark:hover { opacity: .9; }
 .btn-ghost-on-dark { background: transparent; border-color: color-mix(in srgb, var(--brand-dark-ink) 40%, transparent); color: var(--brand-dark-ink); }
@@ -109,13 +109,13 @@ body {
 .card {
   background: var(--bg-elevated);
   border: 1.5px solid var(--border);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .panel-dark {
   background: var(--brand-dark);
   color: var(--brand-dark-ink);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .badge {

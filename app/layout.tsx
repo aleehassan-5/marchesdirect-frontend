@@ -1,20 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo_Black, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/lib/i18n";
 import { Chatbot } from "@/components/Chatbot";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import "./globals.css";
 
-const archivoBlack = Archivo_Black({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-display",
-});
-
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-body",
 });
 
@@ -38,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" data-theme="light" className={`${archivoBlack.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html lang="fr" data-theme="dark" className={`${inter.variable} ${plexMono.variable}`}>
       <body className="pb-[64px] md:pb-0">
         <ThemeProvider>
           <LanguageProvider>

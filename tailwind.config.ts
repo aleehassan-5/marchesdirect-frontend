@@ -28,7 +28,7 @@ const config: Config = {
         mono: ["var(--font-mono)"],
       },
       borderRadius: {
-        card: "10px",
+        card: "20px",
       },
     },
   },

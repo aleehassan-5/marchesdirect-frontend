@@ -7,7 +7,8 @@ import { useTranslation } from "@/lib/i18n";
 const icons: Record<JourneyKey, JSX.Element> = {
   "appels-doffres": (
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" />
+      <rect x="3" y="8" width="18" height="12" rx="2" />
+      <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18M11 13v2h2v-2" />
     </svg>
   ),
   "marches-publics": (
@@ -17,7 +18,9 @@ const icons: Record<JourneyKey, JSX.Element> = {
   ),
   "sous-traitance": (
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.5 9.5l-5 5M9 4l2 2-3 3-2-2 3-3zM18 13l2 2-3 3-2-2 3-3zM6 15l-2 2 3 3 2-2M15 6l2-2 3 3-2 2" />
+      <circle cx="8.5" cy="8" r="2.8" />
+      <circle cx="16" cy="9.5" r="2.3" />
+      <path d="M3.5 20v-1.5c0-2.5 2.2-4.5 5-4.5s5 2 5 4.5V20M14.2 13.8c2.1.2 3.8 1.9 3.8 4.2V20" />
     </svg>
   ),
 };
