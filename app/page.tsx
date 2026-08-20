@@ -36,7 +36,7 @@ export default function HomePage() {
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
       <section className="pt-2 pb-10 md:py-14" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-3.5">
+          <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
               <JourneyCard key={key} slug={key} {...journeys[key]} />
             ))}

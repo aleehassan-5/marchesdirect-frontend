@@ -6,18 +6,18 @@ import { useTranslation } from "@/lib/i18n";
 
 const icons: Record<JourneyKey, JSX.Element> = {
   "appels-doffres": (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" className="w-[20px] h-[20px] md:w-[26px] md:h-[26px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="8" width="18" height="12" rx="2" />
       <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18M11 13v2h2v-2" />
     </svg>
   ),
   "marches-publics": (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" className="w-[20px] h-[20px] md:w-[26px] md:h-[26px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 22h16M5 22V10l7-6 7 6v12M9 22v-6h2v6M13 22v-6h2v6M4 10h16" />
     </svg>
   ),
   "sous-traitance": (
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" className="w-[20px] h-[20px] md:w-[26px] md:h-[26px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="8.5" cy="8" r="2.8" />
       <circle cx="16" cy="9.5" r="2.3" />
       <path d="M3.5 20v-1.5c0-2.5 2.2-4.5 5-4.5s5 2 5 4.5V20M14.2 13.8c2.1.2 3.8 1.9 3.8 4.2V20" />
@@ -58,24 +58,22 @@ export function JourneyCard({
   return (
     <Link
       href={`/${slug}`}
-      className="card p-6 md:p-7 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex flex-col items-center text-center"
+      className="card p-3.5 md:p-7 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex flex-col items-center text-center"
     >
-      <div className="w-[56px] h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-4 text-gold">
+      <div className="w-[42px] h-[42px] md:w-[56px] md:h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-2.5 md:mb-4 text-gold">
         {icons[slug]}
       </div>
-      <h3 className="font-display font-bold text-[19px] md:text-[20px] mb-1.5 text-ink">{label}</h3>
-      <span className="text-ink-soft text-[13.5px] mb-4">
+      <h3 className="font-display font-bold text-[14px] leading-[1.2] md:text-[20px] mb-1 md:mb-1.5 text-ink">{label}</h3>
+      <span className="text-ink-soft text-[11px] md:text-[13.5px] mb-2.5 md:mb-4">
         {t(tagKey[slug])}
       </span>
       <svg
         viewBox="0 0 24 24"
-        width="20"
-        height="20"
         fill="none"
         stroke="var(--gold)"
         strokeWidth="2.4"
         strokeLinecap="round"
-        className="group-hover:translate-x-1 transition-transform shrink-0 mt-auto"
+        className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform shrink-0 mt-auto"
       >
         <path d="M5 12h14M13 6l6 6-6 6" />
       </svg>
