@@ -58,7 +58,7 @@ export function MobileBottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-border-soft bg-bg/95 backdrop-blur pb-[env(safe-area-inset-bottom)]"
+      className="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-border-soft bg-[var(--bg-elevated-2)] pb-[env(safe-area-inset-bottom)]"
       aria-label="Mobile navigation"
     >
       <div className="grid grid-cols-4">
