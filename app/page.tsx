@@ -19,27 +19,29 @@ export default function HomePage() {
 
       <section className="pt-8 pb-6 md:pt-16 md:pb-10">
         <div className="max-w-[1180px] mx-auto px-5">
-          <div className="eyebrow mb-4 md:mb-5" dangerouslySetInnerHTML={{ __html: t("home_eyebrow") }} />
           <h1 className="font-display font-extrabold text-[clamp(28px,7vw,52px)] leading-[1.12] tracking-tight max-w-[15ch]">
             {t("home_title_1")}
             <br />
             <span className="text-gold">{t("home_title_2")}</span>
           </h1>
-          <div className="mt-6 md:mt-8">
-            <SearchBar />
-          </div>
         </div>
       </section>
 
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
-      <section className="pt-2 pb-10 md:py-14" id="journeys">
+      <section className="pt-2 pb-8 md:py-10" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
               <JourneyCard key={key} slug={key} {...journeys[key]} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="pb-10 md:pb-14">
+        <div className="max-w-[1180px] mx-auto px-5">
+          <SearchBar />
         </div>
       </section>
 
