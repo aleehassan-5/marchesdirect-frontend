@@ -19,12 +19,13 @@ export function HowItWorks() {
         </div>
         <div className="border-t border-brand-dark-ink/15">
           {steps.map((s) => (
-            <div key={s.num} className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr_1fr] gap-4 py-6 border-b border-brand-dark-ink/15 items-center">
+            <div
+              key={s.num}
+              className="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr_1fr] gap-x-4 gap-y-2 md:gap-4 py-6 border-b border-brand-dark-ink/15 items-start md:items-center"
+            >
               <div className="font-mono text-[13px] text-gold font-semibold">{s.num}</div>
-              <div>
-                <h4 className="font-display font-bold text-[17px] mb-1.5">{s.title}</h4>
-              </div>
-              <p className="text-[14px] leading-relaxed max-w-[46ch] opacity-75">{s.body}</p>
+              <h4 className="font-display font-bold text-[17px]">{s.title}</h4>
+              <p className="col-start-2 md:col-start-3 text-[14px] leading-relaxed max-w-[46ch] opacity-75">{s.body}</p>
             </div>
           ))}
         </div>
