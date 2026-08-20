@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Listing, JourneyKey } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
 import { StepIndicator } from "./StepIndicator";
+import { useSavedListings } from "@/lib/useSavedListings";
 
 const tagKey: Record<JourneyKey, "journey_tenders_tag" | "journey_public_tag" | "journey_sub_tag"> = {
   "appels-doffres": "journey_tenders_tag",
@@ -14,6 +15,8 @@ const tagKey: Record<JourneyKey, "journey_tenders_tag" | "journey_public_tag" | 
 export function ListingDetailContent({ listing, journeyKey }: { listing: Listing; journeyKey: JourneyKey }) {
   const t = useTranslation();
   const isAnalyzed = listing.status === "Analyse";
+  const { isSaved, toggle } = useSavedListings();
+  const saved = isSaved(listing.id);
 
   return (
     <div className="max-w-[900px] mx-auto px-5 py-8 md:py-10">
@@ -126,7 +129,16 @@ export function ListingDetailContent({ listing, journeyKey }: { listing: Listing
 
       <div className="mt-8 flex gap-3 flex-wrap">
         <Link href={`/repondre/${listing.id}`} className="btn btn-gold">{t("detail_prepare_response")}</Link>
-        <button className="btn btn-ghost">{t("detail_save")}</button>
+        <button
+          onClick={() => toggle(listing.id)}
+          aria-pressed={saved}
+          className={`btn ${saved ? "btn-gold" : "btn-ghost"}`}
+        >
+          {saved ? t("detail_saved") : t("detail_save")}
+        </button>
+        <Link href={`/contact?ref=${listing.id}&titre=${encodeURIComponent(listing.title)}`} className="btn btn-ghost">
+          {t("detail_contact_advisor")}
+        </Link>
       </div>
     </div>
   );

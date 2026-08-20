@@ -13,6 +13,7 @@ export const dict: Dict = {
   nav_subcontract: { fr: "Sous-traitance", en: "Subcontracting" },
   nav_pricing: { fr: "Tarifs", en: "Pricing" },
   nav_dashboard: { fr: "Tableau de bord", en: "Dashboard" },
+  nav_saved: { fr: "Mes opportunites", en: "Saved" },
   nav_login: { fr: "Connexion", en: "Log in" },
   nav_trial: { fr: "Essai gratuit", en: "Free trial" },
   nav_menu_open: { fr: "Ouvrir le menu", en: "Open menu" },
@@ -155,6 +156,8 @@ export const dict: Dict = {
   detail_view_dossier: { fr: "Consulter le dossier", en: "View the dossier" },
   detail_respond: { fr: "Repondre a cette opportunite", en: "Respond to this opportunity" },
   detail_save: { fr: "Sauvegarder", en: "Save" },
+  detail_saved: { fr: "Enregistre", en: "Saved" },
+  detail_contact_advisor: { fr: "Contacter un conseiller", en: "Contact an advisor" },
   detail_from_your_hq: { fr: "de votre siege", en: "from your HQ" },
 
   // Dashboard
