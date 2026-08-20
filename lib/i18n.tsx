@@ -12,6 +12,7 @@ export const dict: Dict = {
   nav_public: { fr: "Marches publics", en: "Public procurement" },
   nav_subcontract: { fr: "Sous-traitance", en: "Subcontracting" },
   nav_pricing: { fr: "Tarifs", en: "Pricing" },
+  nav_about: { fr: "A propos", en: "About us" },
   nav_dashboard: { fr: "Tableau de bord", en: "Dashboard" },
   nav_saved: { fr: "Mes opportunites", en: "Saved" },
   nav_login: { fr: "Connexion", en: "Log in" },
@@ -419,7 +420,56 @@ export const dict: Dict = {
   onboarding_back: { fr: "Retour", en: "Back" },
   onboarding_continue: { fr: "Continuer", en: "Continue" },
   onboarding_step_of: { fr: "Etape {step} sur {total}", en: "Step {step} of {total}" },
+
+  // About us page
+  about_eyebrow: { fr: "Notre equipe", en: "Our team" },
+  about_title: { fr: "Rencontrez nos experts", en: "Meet our experts" },
+  about_who_title: { fr: "Qui sommes-nous ?", en: "Who are we?" },
+  about_who_body: {
+    fr: "MarchesDirect est une equipe motivee, experimentee et specialisee dans la veille et la reponse aux appels d'offres. Nous accompagnons les entreprises du batiment sur les parties commerciales, administratives et techniques, en France metropolitaine, DOM-TOM et Corse.",
+    en: "MarchesDirect is a motivated, experienced team specialised in monitoring and responding to public tenders. We support construction companies on the commercial, administrative and technical sides, across mainland France, overseas territories and Corsica.",
+  },
+  about_video_intro: { fr: "Video de presentation", en: "Video introduction" },
+  about_video_close: { fr: "Fermer", en: "Close" },
+  about_faq_title: { fr: "Questions frequentes", en: "Frequently asked questions" },
 };
+
+export const teamMembers = [
+  { name: "Toupain Rodolphe", role: { fr: "President", en: "President" }, photo: "", videoUrl: "" },
+  { name: "Toupain Anthony", role: { fr: "Manager General & Designer", en: "General Manager & Designer" }, photo: "", videoUrl: "" },
+  { name: "Garance Marchal", role: { fr: "Community Manageur", en: "Community Manager" }, photo: "", videoUrl: "" },
+];
+
+export const faqItems = [
+  {
+    q: { fr: "Pourquoi choisir MarchesDirect pour repondre a nos appels d'offres ?", en: "Why choose MarchesDirect to respond to our tenders?" },
+    a: {
+      fr: "Notre equipe combine une veille automatisee des marches publics et prives avec un accompagnement humain sur chaque dossier, pour maximiser vos chances de remporter un marche sans y passer vos journees.",
+      en: "Our team combines automated public and private tender monitoring with hands-on support on every file, to maximise your chances of winning a contract without spending your days on it.",
+    },
+  },
+  {
+    q: { fr: "Comment MarchesDirect protege-t-elle la confidentialite de nos informations ?", en: "How does MarchesDirect protect the confidentiality of our information?" },
+    a: {
+      fr: "Vos documents et donnees d'entreprise restent strictement confidentiels et ne sont utilises que pour la preparation de vos reponses aux appels d'offres.",
+      en: "Your company documents and data remain strictly confidential and are only used to prepare your tender responses.",
+    },
+  },
+  {
+    q: { fr: "Comment MarchesDirect s'assure-t-elle que nos propositions sont soumises a temps ?", en: "How does MarchesDirect make sure our proposals are submitted on time?" },
+    a: {
+      fr: "Chaque dossier suit un parcours avec etapes et echeances suivies (Dossier, Analyse, Reponse, Envoi), avec des alertes avant chaque date limite.",
+      en: "Every file follows a tracked step-by-step path (Dossier, Analysis, Response, Sending), with alerts ahead of every deadline.",
+    },
+  },
+  {
+    q: { fr: "Qu'est-ce qui differencie MarchesDirect des autres plateformes ?", en: "What sets MarchesDirect apart from other platforms?" },
+    a: {
+      fr: "La combinaison d'une plateforme technique (veille, classification IA) et d'un accompagnement humain reel a chaque etape de votre reponse.",
+      en: "The combination of a technical platform (monitoring, AI classification) and real human support at every step of your response.",
+    },
+  },
+];
 
 export function useTranslation() {
   const { lang } = useLanguage();
