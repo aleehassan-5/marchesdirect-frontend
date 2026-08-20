@@ -1,51 +1,42 @@
-import { Check } from "lucide-react";
+"use client";
 
-export type Step = {
-  label: string;
-  status: "done" | "active" | "upcoming";
-};
-
-export default function StepIndicator({ steps }: { steps: Step[] }) {
+export function StepIndicator({ steps, current }: { steps: string[]; current: number }) {
   return (
-    <ol className="flex items-start px-5 py-6">
-      {steps.map((step, i) => (
-        <li key={step.label} className="flex flex-1 items-center last:flex-initial">
-          <div className="flex flex-col items-center gap-2">
-            <div
-              className={[
-                "flex h-10 w-10 items-center justify-center rounded-full border font-mono text-[13px] font-medium",
-                step.status === "done"
-                  ? "border-brand bg-brand text-lime"
-                  : step.status === "active"
-                  ? "border-brand bg-lime text-brand"
-                  : "border-border bg-card text-muted",
-              ].join(" ")}
-            >
-              {step.status === "done" ? (
-                <Check size={16} strokeWidth={2.5} />
-              ) : (
-                String(i + 1).padStart(2, "0")
-              )}
+    <div className="flex items-start w-full overflow-x-auto pb-1" role="list" aria-label="Progression">
+      {steps.map((label, i) => {
+        const done = i < current;
+        const active = i === current;
+        return (
+          <div key={label} className="flex items-center flex-1 min-w-[64px] last:flex-none last:min-w-0" role="listitem">
+            <div className="flex flex-col items-center gap-2 shrink-0">
+              <div
+                className={`w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center font-mono text-[13px] font-bold border-2 shrink-0 transition-colors ${
+                  done
+                    ? "bg-brand-dark border-brand-dark text-brand-dark-ink"
+                    : active
+                    ? "bg-gold border-gold text-gold-ink"
+                    : "bg-transparent border-border text-ink-faint"
+                }`}
+                aria-current={active ? "step" : undefined}
+              >
+                {done ? (
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12l5 5L19 7" />
+                  </svg>
+                ) : (
+                  String(i + 1).padStart(2, "0")
+                )}
+              </div>
+              <span className={`text-[11px] md:text-[12.5px] font-semibold whitespace-nowrap ${active ? "text-ink" : done ? "text-ink-soft" : "text-ink-faint"}`}>
+                {label}
+              </span>
             </div>
-            <span
-              className={[
-                "whitespace-nowrap text-[12px]",
-                step.status === "upcoming" ? "text-muted" : "text-ink font-medium",
-              ].join(" ")}
-            >
-              {step.label}
-            </span>
+            {i < steps.length - 1 && (
+              <div className={`flex-1 h-[1.5px] mx-1.5 md:mx-2.5 mb-5 min-w-[16px] ${done ? "bg-brand-dark" : "bg-border-soft"}`} />
+            )}
           </div>
-          {i < steps.length - 1 ? (
-            <div
-              className={[
-                "mx-2 mb-5 h-px flex-1",
-                step.status === "done" ? "bg-brand" : "bg-border",
-              ].join(" ")}
-            />
-          ) : null}
-        </li>
-      ))}
-    </ol>
+        );
+      })}
+    </div>
   );
 }

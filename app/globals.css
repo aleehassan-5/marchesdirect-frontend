@@ -2,31 +2,162 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
-  body {
-    @apply bg-canvas text-ink font-sans antialiased;
-  }
-  ::selection {
-    @apply bg-lime text-ink;
-  }
-  *:focus-visible {
-    outline: 2px solid #0b281e;
-    outline-offset: 2px;
-  }
+:root {
+  --font-display: 'Archivo Black', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
-@layer utilities {
-  .tracking-label {
-    letter-spacing: 0.14em;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+html[data-theme="dark"] {
+  --bg: #0d1f14;
+  --bg-elevated: #122a1b;
+  --bg-elevated-2: #163422;
+  --border: #2c4a37;
+  --border-soft: #223a2a;
+  --ink: #f3f4e9;
+  --ink-soft: #b7c2b0;
+  --ink-faint: #7c8a7c;
+  --gold: #c3e05a;
+  --gold-strong: #d5f072;
+  --gold-ink: #10200f;
+  --brand-dark: #0d1f14;
+  --brand-dark-ink: #f3f4e9;
+  --card-1: #c3e05a;
+  --card-2: #6f8fae;
+  --card-3: #d99a4e;
+  --warning: #d99a4e;
+  --danger: #c1603f;
+}
+
+html[data-theme="light"] {
+  --bg: #f5f2e8;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #eeead9;
+  --border: #14170f;
+  --border-soft: #d8d3bf;
+  --ink: #14170f;
+  --ink-soft: #4a4c3f;
+  --ink-faint: #85846d;
+  --gold: #b6d63a;
+  --gold-strong: #9fc02a;
+  --gold-ink: #12190c;
+  --brand-dark: #0d2818;
+  --brand-dark-ink: #f5f2e8;
+  --card-1: #7f9b2e;
+  --card-2: #4c7085;
+  --card-3: #965e39;
+  --warning: #a5701f;
+  --danger: #a3452a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  transition: background .3s ease, color .3s ease;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: "";
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+
+@layer components {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn-gold { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); }
+.btn-gold:hover { background: var(--gold-strong); border-color: var(--gold-strong); }
+.btn-ghost { background: transparent; border-color: var(--ink); color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--bg); }
+.btn-dark { background: var(--brand-dark); color: var(--brand-dark-ink); border-color: var(--brand-dark); }
+.btn-dark:hover { opacity: .9; }
+.btn-ghost-on-dark { background: transparent; border-color: color-mix(in srgb, var(--brand-dark-ink) 40%, transparent); color: var(--brand-dark-ink); }
+.btn-ghost-on-dark:hover { background: color-mix(in srgb, var(--brand-dark-ink) 10%, transparent); }
+
+.card {
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+}
+
+.panel-dark {
+  background: var(--brand-dark);
+  color: var(--brand-dark-ink);
+  border-radius: 10px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+.badge-valid { color: var(--ink-soft); background: color-mix(in srgb, var(--ink-soft) 14%, transparent); }
+.badge-warning { color: var(--warning); background: color-mix(in srgb, var(--warning) 16%, transparent); }
+.badge-danger { color: var(--danger); background: color-mix(in srgb, var(--danger) 16%, transparent); }
+
+/* AI draft / human-review-required indicator: kept in the black/gold palette on purpose,
+   never the purple/blue "AI" look. */
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  color: var(--gold);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+} /* end @layer components */
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }

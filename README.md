@@ -1,73 +1,91 @@
-# MARCHÉS/DIRECT — Component Suite
+# MarchesDirect — Frontend
 
-Next.js 14 (App Router) + Tailwind CSS + lucide-react replica of the six
-reference screens: homepage / 3-way entry point, marchés publics search,
-sous-traitance board, tender detail, dossier de consultation, and the
-"préparer ma réponse" candidature flow.
+Next.js 14 (App Router) + TypeScript + Tailwind CSS frontend for the public
+procurement opportunities platform. Design system: dark green + lime-gold accent
+(see [Design tokens](#design-tokens)), working dark/light toggle, mobile-first
+(J360-inspired), FR/EN language toggle.
 
-## Setup
+## Getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Routes:
+Open http://localhost:3000
 
-- `/` — homepage, 3-way entry point
-- `/marches-publics` — public procurement search & listing cards
-- `/sous-traitance` — subcontracting board
-- `/marche` — tender detail page
-- `/dossier` — dossier de consultation (document room)
-- `/reponse` — préparer ma réponse (candidature accordion)
-
-> This zip was built without network access in the sandbox that generated
-> it, so `node_modules` is not included and `npm install` has not been
-> run/verified end-to-end. Everything is written against Next.js 14 /
-> Tailwind 3 / lucide-react 0.383 APIs; run `npm run build` locally to
-> confirm and fix any last mile issues.
-
-## Design tokens (tailwind.config.js)
-
-| Token | Value | Use |
-|---|---|---|
-| `canvas` | `#EFECE6` | page background |
-| `card` | `#FAF9F5` | card background |
-| `brand` / `brand-dark` | `#0B281E` / `#081C15` | dark green sections, active steps |
-| `lime` / `lime-dark` | `#C4E725` / `#A9CC15` | primary CTAs, active status |
-| `ink` | `#1C1C1C` | borders, primary text |
-| `border` / `border-dark` | `#D7D5CD` / `#1C1C1C` | hairline dividers |
-| `muted` | `#6B6B63` | secondary text |
-
-Fonts (via `next/font/google`, zero layout shift):
-- Display: **Oswald** (condensed, uppercase headings, step numbers)
-- Mono: **JetBrains Mono** (ref codes, dates, file metadata)
-- Sans: **Inter** (body copy, UI controls)
-
-## Structure
+To hit a real local backend instead of an unreachable one, create `.env.local`:
 
 ```
-app/
-  layout.tsx          shared shell, font loading, canvas frame
-  page.tsx             homepage
-  marches-publics/     public procurement search
-  sous-traitance/       subcontracting board
-  marche/               tender detail
-  dossier/               dossier de consultation
-  reponse/               candidature builder
-components/
-  Header.tsx            back button + title + actions
-  StepIndicator.tsx      01→04 process rail
-  ListingCard.tsx        dual-panel opportunity card
-  FilterPill.tsx         tab & dropdown filter chips
-  DocumentRow.tsx        checklist rows, file rows, upload dropzone
-  SearchBar.tsx           bordered search input + lime button
-  Button.tsx              primary/secondary/ghost buttons
-  BottomNav.tsx           4-tab mobile nav
-  Misc.tsx                stat cards, section eyebrows
-  Wordmark.tsx            MARCHÉS/DIRECT logo lockup
+NEXT_PUBLIC_API_URL=http://localhost:5000
 ```
 
-All views are mobile-first (max-width 520px canvas, centered on larger
-screens) with flat, sharp-cornered, 1px-bordered components — no drop
-shadows, matching the reference screens.
+(See the [`marchesdirect-backend`](https://github.com/aleehassan-5/marchesdirect-backend)
+README for how to get that running.) Without it, pages that call the API
+(`/[journey]`, `/[journey]/[id]`) will show an explicit error state rather than
+silently falling back to fake data — that's intentional, not a bug.
+
+## What's real vs. mock data right now
+
+| Wired to the real backend API (`lib/api.ts` → `/api/...`) | Still on mock data (`lib/data.ts`) |
+| --- | --- |
+| `/[journey]` — listing pages (search, trade filter) | `/` — homepage journey cards (labels/icons only, not listings) |
+| `/[journey]/[slug]` — listing detail | `/dashboard`, `/mes-reponses`, `/repondre/[id]` |
+| | `/opportunites/[trade]/[city]` — SEO landing pages |
+
+As the backend milestones (auth, dashboard, tender-response module) land, swap
+the mock imports in the pages above for `lib/api.ts` calls the same way the
+journey listing pages already do.
+
+## Pages
+
+- `/` — homepage with the 3-way entry point (Tenders / Public procurement / Subcontracting)
+- `/appels-doffres`, `/marches-publics`, `/sous-traitance` — listing pages per journey
+- `/[journey]/[slug]` — listing detail page (AI summary + documents shell)
+- `/repondre/[id]` — tender-response wizard: DCE analysis, admin docs, technical memo,
+  pricing schedule (BPU), final assembly checklist (payment terms milestone 9)
+- `/mes-reponses` — bid tracking (to prepare / in progress / submitted / awarded / lost)
+- `/dashboard` — tabbed dashboard shell with profile-completion nudge
+- `/connexion`, `/inscription` — auth pages (UI only, not wired to `authService` yet)
+- `/profil-entreprise` — reusable company document vault shell, with expiry badges
+- `/tarifs` — subscription plans (Stripe-style, milestone 8)
+- `/opportunites/[trade]/[city]` — SEO landing page pattern, one route generates every
+  trade × city combination (milestone 11)
+- `/blog`, `/blog/[slug]` — CMS/editorial shell
+- `/admin` — admin panel shell: source connector health, per-brand analytics, backup status
+- Site-wide AI chatbot widget (bottom-right, every page) — UI only; answers are not
+  wired to the real `/api/chatbot` endpoint yet
+
+## Design tokens
+
+All colors live as CSS variables in `app/globals.css`, switched via
+`data-theme="dark|light"` on `<html>` (see `components/ThemeProvider.tsx`) — this is
+a custom attribute-based system, not Tailwind's built-in `dark:` variant, so don't
+add `dark:` classes expecting them to work; use the `bg`, `ink`, `gold`, etc. color
+tokens from `tailwind.config.ts` instead. Palette is black/dark-green + lime-gold
+only, deliberately not the purple/blue "AI product" look — see `.ai-badge` in
+`globals.css` for the one AI-specific accent, used consistently everywhere an
+AI-generated draft needs a "human review required" flag.
+
+Fonts: Archivo Black (display), Inter (body), IBM Plex Mono (data/labels — CPV
+codes, deadlines, statuses) — loaded via `next/font/google` at build time, which
+needs network access to `fonts.googleapis.com`; this is normal for `next build`/
+`next dev` and works fine on Vercel or any environment with internet access.
+
+## Not included yet (backend-dependent, out of frontend scope)
+
+- Real auth (login/signup pages are UI-only), Stripe billing, CRM integration
+- Dashboard, bid tracking, and tender-response wizard still read `lib/data.ts` —
+  ready to be pointed at real endpoints once those backend milestones land
+- Second brand's actual theme/copy (the architecture supports it: duplicate the
+  CSS variable block in `globals.css` and the copy in `lib/data.ts`/pages under a
+  brand config)
+- Electronic invoicing — explicitly non-critical for MVP per the spec
+
+## Next suggested steps
+
+1. Wire `/dashboard`, `/mes-reponses`, `/repondre/[id]` to real endpoints once the
+   corresponding backend milestones (8, 9) are live-tested
+2. Wire `/connexion` and `/inscription` to `authService` in the backend
+3. Second brand config (milestone 10) — extract brand name/colors/copy into a
+   config file
