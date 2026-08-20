@@ -2,20 +2,64 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useTranslation } from "@/lib/i18n";
+import { register, AuthError } from "@/lib/authClient";
 
 const TOTAL_STEPS = 3;
 
+const RADIUS_VALUES = ["25", "50", "100", "national"];
+
 export default function SignupPage() {
   const t = useTranslation();
+  const router = useRouter();
   const [step, setStep] = useState(0);
+
+  const [companyName, setCompanyName] = useState("");
+  const [trade, setTrade] = useState("Gros oeuvre");
+  const [region, setRegion] = useState("");
+  const [radius, setRadius] = useState(RADIUS_VALUES[1]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const stepLabels = [t("onboarding_step_company"), t("onboarding_step_location"), t("onboarding_step_account")];
 
   const next = () => setStep((s) => Math.min(TOTAL_STEPS - 1, s + 1));
   const back = () => setStep((s) => Math.max(0, s - 1));
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (step < TOTAL_STEPS - 1) {
+      next();
+      return;
+    }
+
+    setError(null);
+    setSubmitting(true);
+    try {
+      await register({
+        companyName,
+        firstName,
+        lastName,
+        email,
+        password,
+        industry: trade,
+        region: region || undefined,
+      });
+      router.push("/dashboard");
+    } catch (err) {
+      setError(err instanceof AuthError ? err.message : t("signup_error_generic"));
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -40,13 +84,13 @@ export default function SignupPage() {
           {t("onboarding_step_of", { step: step + 1, total: TOTAL_STEPS })} &middot; {stepLabels[step]}
         </p>
 
-        <form
-          className="card p-6 flex flex-col gap-4"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (step < TOTAL_STEPS - 1) next();
-          }}
-        >
+        <form className="card p-6 flex flex-col gap-4" onSubmit={onSubmit}>
+          {error && (
+            <div className="text-[13px] text-danger bg-danger/10 border border-danger/30 rounded-[10px] px-3.5 py-2.5">
+              {error}
+            </div>
+          )}
+
           {step === 0 && (
             <>
               <div className="flex flex-col gap-1.5">
@@ -54,12 +98,18 @@ export default function SignupPage() {
                 <input
                   type="text"
                   required
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
                   className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
                 />
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-[13px] font-semibold">{t("signup_trade")}</label>
-                <select className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold">
+                <select
+                  value={trade}
+                  onChange={(e) => setTrade(e.target.value)}
+                  className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
+                >
                   <option>Gros oeuvre</option>
                   <option>Electricite</option>
                   <option>Plomberie / CVC</option>
@@ -77,6 +127,8 @@ export default function SignupPage() {
                 <input
                   type="text"
                   required
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
                   placeholder={t("onboarding_location_placeholder")}
                   className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
                 />
@@ -90,7 +142,13 @@ export default function SignupPage() {
                         key={key}
                         className="flex items-center gap-2 border border-border rounded-[10px] px-3.5 py-2.5 text-[14px] cursor-pointer has-[:checked]:border-gold has-[:checked]:text-gold"
                       >
-                        <input type="radio" name="radius" defaultChecked={i === 1} className="accent-[var(--gold)]" />
+                        <input
+                          type="radio"
+                          name="radius"
+                          checked={radius === RADIUS_VALUES[i]}
+                          onChange={() => setRadius(RADIUS_VALUES[i])}
+                          className="accent-[var(--gold)]"
+                        />
                         {t(key)}
                       </label>
                     )
@@ -102,13 +160,48 @@ export default function SignupPage() {
 
           {step === 2 && (
             <>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[13px] font-semibold">{t("signup_firstname")}</label>
+                  <input
+                    type="text"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[13px] font-semibold">{t("signup_lastname")}</label>
+                  <input
+                    type="text"
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
+                  />
+                </div>
+              </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-[13px] font-semibold">{t("signup_email")}</label>
-                <input type="email" required className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold" />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
+                />
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-[13px] font-semibold">{t("signup_password")}</label>
-                <input type="password" required className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold" />
+                <input
+                  type="password"
+                  required
+                  minLength={8}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[14.5px] outline-none focus:border-gold"
+                />
               </div>
             </>
           )}
@@ -119,8 +212,8 @@ export default function SignupPage() {
                 {t("onboarding_back")}
               </button>
             )}
-            <button type="submit" className="btn btn-gold flex-1">
-              {step < TOTAL_STEPS - 1 ? t("onboarding_continue") : t("signup_submit")}
+            <button type="submit" disabled={submitting} className="btn btn-gold flex-1 disabled:opacity-60">
+              {step < TOTAL_STEPS - 1 ? t("onboarding_continue") : submitting ? t("signup_submitting") : t("signup_submit")}
             </button>
           </div>
         </form>

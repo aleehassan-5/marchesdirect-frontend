@@ -19,6 +19,8 @@ const config: Config = {
         "gold-ink": "var(--gold-ink)",
         "brand-dark": "var(--brand-dark)",
         "brand-dark-ink": "var(--brand-dark-ink)",
+        warning: "var(--warning)",
+        danger: "var(--danger)",
       },
       fontFamily: {
         display: ["var(--font-display)"],

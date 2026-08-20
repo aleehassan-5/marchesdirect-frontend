@@ -1,11 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ListingCard } from "@/components/ListingCard";
 import { TodayActions } from "@/components/TodayActions";
 import { journeys, listings } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
+import { getSession, getMe, type MeResponse } from "@/lib/authClient";
 
 const labelKey: Record<string, "nav_tenders" | "nav_public" | "nav_subcontract"> = {
   "appels-doffres": "nav_tenders",
@@ -15,7 +18,36 @@ const labelKey: Record<string, "nav_tenders" | "nav_public" | "nav_subcontract">
 
 export default function DashboardPage() {
   const t = useTranslation();
+  const router = useRouter();
   const journeyKeys = Object.keys(journeys) as Array<keyof typeof journeys>;
+
+  const [me, setMe] = useState<MeResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // No server-side guard here since the session lives in localStorage
+  // (client-only) - this is the earliest point a guard can run. Anyone hitting
+  // /dashboard without a session gets bounced to /connexion before any real
+  // company data is fetched.
+  useEffect(() => {
+    if (!getSession()) {
+      router.replace("/connexion");
+      return;
+    }
+    getMe()
+      .then(setMe)
+      .catch(() => router.replace("/connexion"))
+      .finally(() => setLoading(false));
+  }, [router]);
+
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <div className="max-w-[1180px] mx-auto px-5 py-16 text-ink-soft text-[14px]">{t("state_loading")}</div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
@@ -25,7 +57,7 @@ export default function DashboardPage() {
           <div>
             <div className="eyebrow mb-3">{t("dash_eyebrow")}</div>
             <h1 className="font-display font-extrabold text-[clamp(24px,4vw,34px)] tracking-tight">
-              {t("dash_greeting")}, Entreprise Dupont BTP
+              {t("dash_greeting")}, {me?.company?.name ?? me?.user?.firstName ?? ""}
             </h1>
           </div>
           <div className="flex flex-wrap gap-2.5">
@@ -38,6 +70,11 @@ export default function DashboardPage() {
           <TodayActions />
         </div>
 
+        {/* Profile completeness %, matched-opportunity listings below, and TodayActions
+            are still mock data (lib/data.ts) - this pass only wires the auth guard and
+            the real company name/greeting. Wiring the rest to GET /api/opportunities
+            filtered by the company's matched trades (Milestone 6 matching engine) and a
+            real profile-completeness calculation is separate follow-up work. */}
         <div className="mt-5 card p-5 flex items-center justify-between flex-wrap gap-3">
           <div>
             <span className="text-[13.5px] font-semibold">{t("dash_profile_complete", { pct: 62 })}</span>

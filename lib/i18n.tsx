@@ -160,7 +160,10 @@ export const dict: Dict = {
   login_email: { fr: "Email professionnel", en: "Business email" },
   login_password: { fr: "Mot de passe", en: "Password" },
   login_submit: { fr: "Se connecter", en: "Log in" },
+  login_submitting: { fr: "Connexion...", en: "Logging in..." },
   login_no_account: { fr: "Pas encore de compte ?", en: "Don't have an account yet?" },
+  login_error_generic: { fr: "Email ou mot de passe incorrect.", en: "Incorrect email or password." },
+  nav_logout: { fr: "Se deconnecter", en: "Log out" },
 
   signup_eyebrow: { fr: "Essai gratuit", en: "Free trial" },
   signup_title: { fr: "Creez votre compte", en: "Create your account" },
@@ -170,10 +173,14 @@ export const dict: Dict = {
   },
   signup_company: { fr: "Nom de l'entreprise", en: "Company name" },
   signup_trade: { fr: "Metier principal", en: "Main trade" },
+  signup_firstname: { fr: "Prenom", en: "First name" },
+  signup_lastname: { fr: "Nom", en: "Last name" },
   signup_email: { fr: "Email professionnel", en: "Business email" },
   signup_password: { fr: "Mot de passe", en: "Password" },
   signup_submit: { fr: "Creer mon compte", en: "Create my account" },
+  signup_submitting: { fr: "Creation...", en: "Creating..." },
   signup_have_account: { fr: "Deja inscrit ?", en: "Already registered?" },
+  signup_error_generic: { fr: "Une erreur est survenue. Veuillez reessayer.", en: "Something went wrong. Please try again." },
 
   // Pricing
   pricing_eyebrow: { fr: "Tarifs", en: "Pricing" },

@@ -1,14 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useTranslation } from "@/lib/i18n";
+import { getSession, clearSession, type Session } from "@/lib/authClient";
 
 export function Header() {
   const t = useTranslation();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+
+  // Read the session client-side only (localStorage isn't available during SSR,
+  // and reading it on every render would cause a hydration mismatch).
+  useEffect(() => {
+    setSession(getSession());
+  }, []);
+
+  const handleLogout = () => {
+    clearSession();
+    setSession(null);
+    setOpen(false);
+    router.push("/");
+  };
 
   const links = [
     { href: "/appels-doffres", label: t("nav_tenders") },
@@ -38,12 +55,20 @@ export function Header() {
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 shrink-0">
           <LanguageToggle />
           <ThemeToggle />
-          <Link href="/connexion" className="hidden lg:inline-flex btn btn-ghost">
-            {t("nav_login")}
-          </Link>
-          <Link href="/inscription" className="hidden lg:inline-flex btn btn-gold">
-            {t("nav_trial")}
-          </Link>
+          {session ? (
+            <button onClick={handleLogout} className="hidden lg:inline-flex btn btn-ghost">
+              {t("nav_logout")}
+            </button>
+          ) : (
+            <>
+              <Link href="/connexion" className="hidden lg:inline-flex btn btn-ghost">
+                {t("nav_login")}
+              </Link>
+              <Link href="/inscription" className="hidden lg:inline-flex btn btn-gold">
+                {t("nav_trial")}
+              </Link>
+            </>
+          )}
 
           <button
             onClick={() => setOpen((o) => !o)}
@@ -76,12 +101,20 @@ export function Header() {
             </Link>
           ))}
           <div className="flex gap-2.5 mt-4">
-            <Link href="/connexion" onClick={() => setOpen(false)} className="btn btn-ghost flex-1">
-              {t("nav_login")}
-            </Link>
-            <Link href="/inscription" onClick={() => setOpen(false)} className="btn btn-gold flex-1">
-              {t("nav_trial")}
-            </Link>
+            {session ? (
+              <button onClick={handleLogout} className="btn btn-ghost flex-1">
+                {t("nav_logout")}
+              </button>
+            ) : (
+              <>
+                <Link href="/connexion" onClick={() => setOpen(false)} className="btn btn-ghost flex-1">
+                  {t("nav_login")}
+                </Link>
+                <Link href="/inscription" onClick={() => setOpen(false)} className="btn btn-gold flex-1">
+                  {t("nav_trial")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}
