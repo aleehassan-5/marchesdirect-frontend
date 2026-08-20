@@ -224,6 +224,8 @@ export const dict: Dict = {
   profile_ref_date: { fr: "Date de fin", en: "Completion date" },
   profile_doc_type: { fr: "Type de document", en: "Document type" },
   profile_doc_url: { fr: "Lien du fichier", en: "File URL" },
+  profile_doc_file: { fr: "Fichier", en: "File" },
+  profile_doc_choose_file: { fr: "Merci de choisir un fichier.", en: "Please choose a file." },
   profile_doc_expiry: { fr: "Date d'expiration", en: "Expiry date" },
   profile_cert_name: { fr: "Nom de la certification", en: "Certification name" },
   profile_cert_issuer: { fr: "Delivree par", en: "Issued by" },

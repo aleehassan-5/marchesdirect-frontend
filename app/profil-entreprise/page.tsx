@@ -15,6 +15,7 @@ import {
   addCertification,
   getReferences,
   addReference,
+  uploadFile,
   type Company,
   type CompanyDocument,
   type CompanyCertification,
@@ -56,8 +57,13 @@ export default function CompanyProfilePage() {
   const [savingRef, setSavingRef] = useState(false);
 
   const [showDocForm, setShowDocForm] = useState(false);
-  const [docForm, setDocForm] = useState({ documentType: "kbis", fileUrl: "", expiryDate: "" });
+  const [docForm, setDocForm] = useState<{ documentType: string; file: File | null; expiryDate: string }>({
+    documentType: "kbis",
+    file: null,
+    expiryDate: "",
+  });
   const [savingDoc, setSavingDoc] = useState(false);
+  const [docError, setDocError] = useState<string | null>(null);
 
   const [showCertForm, setShowCertForm] = useState(false);
   const [certForm, setCertForm] = useState({ certificationName: "", issuedBy: "" });
@@ -116,16 +122,25 @@ export default function CompanyProfilePage() {
 
   async function submitDocument(e: React.FormEvent) {
     e.preventDefault();
+    if (!docForm.file) {
+      setDocError(t("profile_doc_choose_file"));
+      return;
+    }
     setSavingDoc(true);
+    setDocError(null);
     try {
+      const uploaded = await uploadFile(docForm.file);
       const created = await addDocument({
         documentType: docForm.documentType,
-        fileUrl: docForm.fileUrl,
+        documentName: docForm.file.name,
+        fileUrl: uploaded.url,
         expiryDate: docForm.expiryDate || undefined,
       });
       setDocuments((prev) => [created, ...prev]);
-      setDocForm({ documentType: "kbis", fileUrl: "", expiryDate: "" });
+      setDocForm({ documentType: "kbis", file: null, expiryDate: "" });
       setShowDocForm(false);
+    } catch (err) {
+      setDocError(err instanceof Error ? err.message : t("profile_save_error"));
     } finally {
       setSavingDoc(false);
     }
@@ -281,8 +296,18 @@ export default function CompanyProfilePage() {
                   <option key={d} value={d}>{d}</option>
                 ))}
               </select>
-              <Field label={t("profile_doc_url")} value={docForm.fileUrl} onChange={(v) => setDocForm((f) => ({ ...f, fileUrl: v }))} />
+              <label className="flex flex-col gap-1 text-[12.5px] text-ink-soft">
+                {t("profile_doc_file")}
+                <input
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                  onChange={(e) => setDocForm((f) => ({ ...f, file: e.target.files?.[0] ?? null }))}
+                  className="bg-transparent border border-border rounded-[10px] px-3.5 py-2.5 text-[13px] outline-none focus:border-gold file:mr-3 file:py-1 file:px-2 file:rounded-md file:border-0 file:bg-gold file:text-gold-ink file:text-[12px] file:cursor-pointer"
+                  required
+                />
+              </label>
               <Field label={t("profile_doc_expiry")} value={docForm.expiryDate} onChange={(v) => setDocForm((f) => ({ ...f, expiryDate: v }))} type="date" />
+              {docError && <p className="text-[12.5px] text-red-500 sm:col-span-2">{docError}</p>}
               <button className="btn btn-gold text-[13px] px-3.5 py-2" disabled={savingDoc}>{savingDoc ? t("profile_saving") : t("profile_save")}</button>
             </form>
           )}

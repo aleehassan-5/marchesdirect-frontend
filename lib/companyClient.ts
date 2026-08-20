@@ -96,6 +96,32 @@ export const getCompanyProfile = () => authedFetch<Company>("/api/companies/me")
 export const updateCompanyProfile = (fields: Partial<Company>) =>
   authedFetch<Company>("/api/companies/me", { method: "PUT", body: JSON.stringify(fields) });
 
+export type UploadResult = { url: string; sizeBytes: number; mimeType: string; originalName: string };
+
+/** Uploads a real file (multipart/form-data) and returns the URL to store on a document/certification record. */
+export async function uploadFile(file: File): Promise<UploadResult> {
+  const session = getSession();
+  if (!session) throw new AuthError("Not logged in");
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}/api/uploads`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${session.accessToken}` }, // no Content-Type: browser sets the multipart boundary
+      body: formData,
+    });
+  } catch {
+    throw new AuthError(`Impossible de contacter le serveur (${API_BASE}).`);
+  }
+
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new AuthError(data.error || "Échec de l'envoi du fichier.");
+  return data as UploadResult;
+}
+
 export const getDocuments = () => authedFetch<CompanyDocument[]>("/api/companies/me/documents");
 export const addDocument = (doc: {
   documentType: string;
