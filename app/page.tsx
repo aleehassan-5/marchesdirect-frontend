@@ -19,7 +19,7 @@ export default function HomePage() {
 
       <section className="pt-8 pb-6 md:pt-16 md:pb-10">
         <div className="max-w-[1180px] mx-auto px-5">
-          <h1 className="font-display font-extrabold text-[clamp(28px,7vw,52px)] leading-[1.12] tracking-tight max-w-[15ch]">
+          <h1 className="font-display font-extrabold text-[clamp(24px,6vw,38px)] leading-[1.12] tracking-tight max-w-[15ch]">
             {t("home_title_1")}
             <br />
             <span className="text-gold">{t("home_title_2")}</span>

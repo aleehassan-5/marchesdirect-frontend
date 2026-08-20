@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" data-theme="dark" className={`${inter.variable} ${plexMono.variable}`}>
-      <body className="pb-[64px] md:pb-0">
+      <body className="pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0">
         <ThemeProvider>
           <LanguageProvider>
             {children}
