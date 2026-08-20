@@ -72,14 +72,17 @@ body {
   text-transform: uppercase;
   color: var(--gold);
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
+  line-height: 1.5;
   gap: 8px;
 }
 .eyebrow::before {
   content: "";
   width: 16px;
   height: 1px;
+  margin-top: 0.6em;
   background: var(--gold);
+  flex-shrink: 0;
 }
 
 @layer components {

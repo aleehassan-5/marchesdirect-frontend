@@ -17,7 +17,7 @@ export default function HomePage() {
     <>
       <Header />
 
-      <section className="pt-8 pb-8 md:pt-16 md:pb-10">
+      <section className="pt-8 pb-6 md:pt-16 md:pb-10">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="eyebrow mb-4 md:mb-5" dangerouslySetInnerHTML={{ __html: t("home_eyebrow") }} />
           <h1 className="font-display font-extrabold text-[clamp(28px,7vw,52px)] leading-[1.12] tracking-tight max-w-[15ch]">
@@ -25,10 +25,9 @@ export default function HomePage() {
             <br />
             <span className="text-gold">{t("home_title_2")}</span>
           </h1>
-          <p
-            className="mt-4 md:mt-5 text-[15px] md:text-[clamp(15px,2vw,18px)] text-ink-soft max-w-[46ch] leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: t("home_subtitle") }}
-          />
+          <div className="mt-6 md:mt-8">
+            <SearchBar />
+          </div>
         </div>
       </section>
 
@@ -40,9 +39,6 @@ export default function HomePage() {
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
               <JourneyCard key={key} slug={key} {...journeys[key]} />
             ))}
-          </div>
-          <div className="mt-8 md:mt-10">
-            <SearchBar />
           </div>
         </div>
       </section>

@@ -25,7 +25,7 @@ export const dict: Dict = {
   footer_contact: { fr: "Contact", en: "Contact" },
 
   // Homepage
-  home_eyebrow: { fr: "3 flux d'opportunites &middot; une seule plateforme", en: "3 opportunity streams &middot; one platform" },
+  home_eyebrow: { fr: "3 flux d'opportunites", en: "3 opportunity streams" },
   home_title_1: { fr: "Ne cherchez plus vos opportunites.", en: "Stop chasing your opportunities." },
   home_title_gold: { fr: "appels d'offres.", en: "tenders." },
   home_title_2: { fr: "On vous les apporte.", en: "We bring them to you." },
