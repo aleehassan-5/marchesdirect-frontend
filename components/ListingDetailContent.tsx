@@ -80,7 +80,12 @@ export function ListingDetailContent({ listing, journeyKey }: { listing: Listing
       </div>
 
       <div className="mt-8 card p-6">
-        <h2 className="font-display font-bold text-[17px] mb-4">{t("detail_documents")}</h2>
+        <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+          <h2 className="font-display font-bold text-[17px]">{t("detail_documents")}</h2>
+          <Link href={`/${journeyKey}/${listing.id}/dossier`} className="text-[13px] font-semibold text-gold hover:underline underline-offset-4">
+            {t("detail_view_dossier")}
+          </Link>
+        </div>
         <ul className="flex flex-col gap-1">
           {[
             { label: t("detail_doc_rc"), ext: "PDF" },
