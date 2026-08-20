@@ -25,12 +25,6 @@ const icons: Record<JourneyKey, JSX.Element> = {
   ),
 };
 
-const tagKey: Record<JourneyKey, "journey_tenders_tag" | "journey_public_tag" | "journey_sub_tag"> = {
-  "appels-doffres": "journey_tenders_tag",
-  "marches-publics": "journey_public_tag",
-  "sous-traitance": "journey_sub_tag",
-};
-
 const descKey: Record<JourneyKey, "journey_tenders_desc" | "journey_public_desc" | "journey_sub_desc"> = {
   "appels-doffres": "journey_tenders_desc",
   "marches-publics": "journey_public_desc",
@@ -63,10 +57,7 @@ export function JourneyCard({
       <div className="w-[42px] h-[42px] md:w-[56px] md:h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-2.5 md:mb-4 text-gold">
         {icons[slug]}
       </div>
-      <h3 className="font-display font-bold text-[14px] leading-[1.2] md:text-[20px] mb-1 md:mb-1.5 text-ink">{label}</h3>
-      <span className="text-ink-soft text-[11px] md:text-[13.5px] mb-2.5 md:mb-4">
-        {t(tagKey[slug])}
-      </span>
+      <h3 className="font-display font-bold text-[14px] leading-[1.2] md:text-[20px] mb-2.5 md:mb-4 text-ink">{label}</h3>
       <svg
         viewBox="0 0 24 24"
         fill="none"
