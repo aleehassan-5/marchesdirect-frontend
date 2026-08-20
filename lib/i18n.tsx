@@ -56,6 +56,8 @@ export const dict: Dict = {
     fr: "Lots a reprendre entre entreprises du batiment. Rapidite et disponibilite en priorite.",
     en: "Work packages to take over between construction companies. Speed and availability first.",
   },
+  journey_sub_toggle_site: { fr: "Je cherche un chantier", en: "I'm looking for a site" },
+  journey_sub_toggle_partner: { fr: "Je cherche un partenaire", en: "I'm looking for a partner" },
 
   // Search bar
   search_trade: { fr: "Metier", en: "Trade" },

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { useState } from "react";
 import { ListingCard } from "@/components/ListingCard";
 import { EmptyState, ErrorState } from "@/components/States";
 import type { Listing, JourneyKey } from "@/lib/data";
@@ -43,6 +44,11 @@ export function JourneyPageContent({
   const t = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
+  // Sous-traitance is a two-sided marketplace (site owners posting work vs.
+  // companies offering to take it), so it gets this extra toggle the other two
+  // journeys don't need. Visual only for now - both tabs show the same results
+  // until the backend distinguishes "posted by" from "looking for" listings.
+  const [subMode, setSubMode] = useState<"site" | "partner">("site");
 
   // Trade filter and free-text search are real - they update the URL, which the
   // server component re-reads and re-queries the backend with (trade_id/q params
@@ -64,6 +70,27 @@ export function JourneyPageContent({
         {t(labelKey[journeyKey])}
       </h1>
       <p className="text-ink-soft mt-3 max-w-[54ch]">{t(descKey[journeyKey])}</p>
+
+      {journeyKey === "sous-traitance" && (
+        <div className="mt-6 inline-flex rounded-full border border-border p-1 gap-1">
+          <button
+            onClick={() => setSubMode("site")}
+            className={`px-4 py-2 rounded-full text-[13.5px] font-semibold transition-colors ${
+              subMode === "site" ? "bg-gold text-gold-ink" : "text-ink-soft"
+            }`}
+          >
+            {t("journey_sub_toggle_site")}
+          </button>
+          <button
+            onClick={() => setSubMode("partner")}
+            className={`px-4 py-2 rounded-full text-[13.5px] font-semibold transition-colors ${
+              subMode === "partner" ? "bg-gold text-gold-ink" : "text-ink-soft"
+            }`}
+          >
+            {t("journey_sub_toggle_partner")}
+          </button>
+        </div>
+      )}
 
       <div className="mt-8 card p-3 flex flex-wrap gap-3 items-center">
         <select
