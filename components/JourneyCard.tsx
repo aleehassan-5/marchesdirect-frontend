@@ -45,7 +45,6 @@ const labelKey: Record<JourneyKey, "nav_tenders" | "nav_public" | "nav_subcontra
 
 export function JourneyCard({
   slug,
-  color,
 }: {
   slug: JourneyKey;
   label: string;
@@ -59,28 +58,27 @@ export function JourneyCard({
   return (
     <Link
       href={`/${slug}`}
-      className="card p-5 md:p-6 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex md:block items-center gap-4 md:gap-0"
-      style={{ borderTop: "1px solid var(--border)", borderLeft: `4px solid ${color}` }}
+      className="card p-6 md:p-7 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex flex-col items-center text-center"
     >
-      <div
-        className="w-[48px] h-[48px] md:w-[42px] md:h-[42px] shrink-0 rounded-[12px] flex items-center justify-center mb-0 md:mb-4"
-        style={{ background: `color-mix(in srgb, ${color} 16%, transparent)`, color }}
-      >
+      <div className="w-[56px] h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-4 text-gold">
         {icons[slug]}
       </div>
-      <div className="flex-1 min-w-0">
-        <span className="font-mono text-[10.5px] uppercase tracking-wide font-semibold block mb-1 md:mb-2.5" style={{ color }}>
-          {t(tagKey[slug])}
-        </span>
-        <h3 className="font-display font-bold text-[17px] md:text-[19px] mb-1 md:mb-2">{label}</h3>
-        <p className="hidden md:block text-ink-soft text-[14px] leading-relaxed">{t(descKey[slug])}</p>
-        <div className="mt-1 md:mt-4 text-[13.5px] font-bold flex items-center gap-1.5" style={{ color }}>
-          {t("home_explore")}
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" className="group-hover:translate-x-1 transition-transform shrink-0">
-            <path d="M5 12h14M13 6l6 6-6 6" />
-          </svg>
-        </div>
-      </div>
+      <h3 className="font-display font-bold text-[19px] md:text-[20px] mb-1.5 text-ink">{label}</h3>
+      <span className="text-ink-soft text-[13.5px] mb-4">
+        {t(tagKey[slug])}
+      </span>
+      <svg
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="var(--gold)"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        className="group-hover:translate-x-1 transition-transform shrink-0 mt-auto"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
     </Link>
   );
 }
