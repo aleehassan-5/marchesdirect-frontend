@@ -8,7 +8,7 @@ export function SearchBar({ compact = false }: { compact?: boolean }) {
   return (
     <div
       className={`${
-        compact ? "mt-0" : "mt-7 md:mt-9"
+        compact ? "mt-0" : "mt-3 md:mt-9"
       } card shadow-xl p-2 sm:p-2.5 flex flex-col sm:flex-row gap-1.5 sm:gap-2 w-full max-w-[700px] border-2 border-gold/25`}
     >
       <div className="flex-1 px-3.5 py-2.5 sm:py-2 flex flex-col gap-0.5 border-b sm:border-b-0 sm:border-r border-border-soft">
