@@ -19,7 +19,7 @@ export default function HomePage() {
     <>
       <Header />
 
-      <section className="pt-8 pb-6 md:pt-16 md:pb-10">
+      <section className="pt-4 pb-3 md:pt-16 md:pb-10">
         <div className="max-w-[1180px] mx-auto px-5 flex items-center gap-4 sm:gap-6 md:gap-10">
           <div className="flex-1 min-w-0">
             <h1 className="font-display font-extrabold text-[clamp(22px,6vw,38px)] leading-[1.15] tracking-tight">
@@ -48,7 +48,7 @@ export default function HomePage() {
       {/* Advisor CTA - compact version right under the hero, before the 3 entry
           points, matching the client's reference. A fuller version (with the
           who-we-are card) repeats further down the page. */}
-      <section className="pb-4 md:pb-6">
+      <section className="pb-2 md:pb-6">
         <div className="max-w-[1180px] mx-auto px-5 flex gap-2.5 flex-wrap">
           <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
             {t("home_advisor_book")}
@@ -61,7 +61,7 @@ export default function HomePage() {
 
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
-      <section className="pt-2 pb-3 md:py-10" id="journeys">
+      <section className="pt-1 pb-2 md:py-10" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
@@ -71,7 +71,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="pb-10 md:pb-14">
+      <section className="pb-6 md:pb-14">
         <div className="max-w-[1180px] mx-auto px-5">
           <SearchBar />
         </div>
