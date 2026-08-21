@@ -13,15 +13,17 @@ type Action = {
 };
 
 /**
- * Small rule-based "what do I need to do today" list. In production this would be
- * computed server-side from real deadlines, profile completion % and document expiry
- * dates; here it's driven by the same mock numbers used elsewhere on the dashboard.
+ * Small rule-based "what do I need to do today" list. This is computed from
+ * real values passed in by the caller - no more hardcoded demo numbers here.
+ * Until a backend endpoint exists for deadlines/profile%/drafts/doc-expiry,
+ * callers should pass 0 (shows the honest "all done" state) rather than a
+ * made-up number.
  */
 export function TodayActions({
-  deadlinesSoon = 2,
-  profilePct = 62,
-  draftsReady = 1,
-  docsExpiring = 1,
+  deadlinesSoon = 0,
+  profilePct = 0,
+  draftsReady = 0,
+  docsExpiring = 0,
 }: {
   deadlinesSoon?: number;
   profilePct?: number;
@@ -61,7 +63,7 @@ export function TodayActions({
       priority: "medium",
     });
   }
-  if (profilePct < 100) {
+  if (profilePct > 0 && profilePct < 100) {
     actions.push({
       key: "profile",
       labelKey: "today_profile_incomplete",

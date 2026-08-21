@@ -1,35 +1,46 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { EmptyState, ErrorState } from "@/components/States";
 import { useTranslation, useLanguage } from "@/lib/i18n";
+import { getSession, authFetch } from "@/lib/authClient";
 
-const sources = [
-  { name: "BOAMP", ok: true, lastRunMin: 34, nextRunMin: 86 },
-  { name: "PLACE", ok: true, lastRunMin: 62, nextRunMin: 58 },
-  { name: "TED / JOUE", ok: true, lastRunMin: 131, nextRunMin: 229 },
-  { name: "Buyer profiles regionaux", ok: false, lastRunMin: 580, nextRunMin: null },
-];
-
-const brandsByLang = {
-  fr: [
-    { name: "MarchesDirect", visitors: "8 240 / mois", subs: 142 },
-    { name: "Deuxieme marque (a configurer)", visitors: "-", subs: 0 },
-  ],
-  en: [
-    { name: "MarchesDirect", visitors: "8,240 / mo", subs: 142 },
-    { name: "Second brand (to configure)", visitors: "-", subs: 0 },
-  ],
+type DataSource = {
+  code: string;
+  name: string;
+  active: boolean;
+  last_run: string | null;
+  next_run: string | null;
 };
 
 export default function AdminPage() {
   const t = useTranslation();
   const { lang } = useLanguage();
-  const brands = brandsByLang[lang];
+  const router = useRouter();
   const isEn = lang === "en";
 
-  const fmtAgo = (min: number) => (isEn ? `${Math.floor(min / 60) ? Math.floor(min / 60) + "h " : ""}${min % 60}min ago` : `il y a ${Math.floor(min / 60) ? Math.floor(min / 60) + "h" : ""}${min % 60}min`);
-  const fmtIn = (min: number | null) => (min === null ? (isEn ? "check required" : "verification requise") : isEn ? `in ${Math.floor(min / 60) ? Math.floor(min / 60) + "h " : ""}${min % 60}min` : `dans ${Math.floor(min / 60) ? Math.floor(min / 60) + "h" : ""}${min % 60}min`);
+  const [sources, setSources] = useState<DataSource[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!getSession()) {
+      router.replace("/connexion");
+      return;
+    }
+    authFetch<{ sources: DataSource[] }>("/api/admin/data-sources")
+      .then((res) => setSources(res.sources))
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, [router]);
+
+  const fmtDate = (iso: string | null) => {
+    if (!iso) return isEn ? "never run" : "jamais lance";
+    return new Date(iso).toLocaleString(isEn ? "en-GB" : "fr-FR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+  };
 
   return (
     <>
@@ -40,50 +51,47 @@ export default function AdminPage() {
 
         <div className="mt-8 card p-5">
           <h3 className="font-display font-bold text-[15.5px] mb-4">{t("admin_sources_title")}</h3>
-          <div className="flex flex-col gap-2.5">
-            {sources.map((s) => (
-              <div key={s.name} className="flex items-center justify-between flex-wrap gap-2 border-b border-border-soft pb-2.5">
-                <span className="text-[14px] font-medium">{s.name}</span>
-                <div className="flex items-center gap-4 text-[12.5px] font-mono text-ink-soft">
-                  <span>{t("admin_last_run")} : {fmtAgo(s.lastRunMin)}</span>
-                  <span>{t("admin_next_run")} : {fmtIn(s.nextRunMin)}</span>
-                  <span
-                    className="font-semibold px-2 py-0.5 rounded-full"
-                    style={
-                      s.ok
-                        ? { background: "color-mix(in srgb, var(--gold) 15%, transparent)", color: "var(--gold)" }
-                        : { background: "color-mix(in srgb, var(--danger) 15%, transparent)", color: "var(--danger)" }
-                    }
-                  >
-                    {s.ok ? "OK" : isEn ? "Delayed" : "En retard"}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="card p-5">
-            <h3 className="font-display font-bold text-[15.5px] mb-4">{t("admin_analytics_title")}</h3>
-            <div className="flex flex-col gap-3">
-              {brands.map((b) => (
-                <div key={b.name} className="flex items-center justify-between text-[14px]">
-                  <span>{b.name}</span>
-                  <span className="font-mono text-ink-soft text-[13px]">{b.visitors} &middot; {b.subs} {t("admin_subs_count")}</span>
+          {loading && <p className="text-ink-soft text-[14px]">{t("state_loading")}</p>}
+          {!loading && error && <ErrorState />}
+          {!loading && !error && sources && sources.length === 0 && <EmptyState />}
+          {!loading && !error && sources && sources.length > 0 && (
+            <div className="flex flex-col gap-2.5">
+              {sources.map((s) => (
+                <div key={s.code} className="flex items-center justify-between flex-wrap gap-2 border-b border-border-soft pb-2.5 last:border-b-0">
+                  <span className="text-[14px] font-medium">{s.name}</span>
+                  <div className="flex items-center gap-4 text-[12.5px] font-mono text-ink-soft">
+                    <span>{t("admin_last_run")} : {fmtDate(s.last_run)}</span>
+                    <span>{t("admin_next_run")} : {fmtDate(s.next_run)}</span>
+                    <span
+                      className="font-semibold px-2 py-0.5 rounded-full"
+                      style={
+                        s.active
+                          ? { background: "color-mix(in srgb, var(--gold) 15%, transparent)", color: "var(--gold)" }
+                          : { background: "color-mix(in srgb, var(--danger) 15%, transparent)", color: "var(--danger)" }
+                      }
+                    >
+                      {s.active ? "OK" : isEn ? "Inactive" : "Inactif"}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
+          )}
+        </div>
+
+        {/* Brand visitor/subscriber analytics and backup-status widgets need a real
+            analytics + backup-monitoring integration - not wired yet, so this shows
+            an honest "not available" state rather than made-up numbers. */}
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="card p-5">
+            <h3 className="font-display font-bold text-[15.5px] mb-4">{t("admin_analytics_title")}</h3>
+            <p className="text-ink-faint text-[13.5px]">{t("admin_not_available")}</p>
           </div>
 
           <div className="card p-5">
             <h3 className="font-display font-bold text-[15.5px] mb-4">{t("admin_backups_title")}</h3>
-            <div className="flex items-center justify-between text-[14px]">
-              <span>{t("admin_last_backup")}</span>
-              <span className="font-mono text-gold text-[13px]">
-                {isEn ? "Restoration OK \u00b7 yesterday 05:00" : "Restauration OK \u00b7 hier 05:00"}
-              </span>
-            </div>
+            <p className="text-ink-faint text-[13.5px]">{t("admin_not_available")}</p>
           </div>
         </div>
 

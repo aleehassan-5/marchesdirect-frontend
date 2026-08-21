@@ -199,3 +199,17 @@ export type Alert = {
 export const getAlerts = () => authFetch<Alert[]>("/api/alerts");
 export const markAlertRead = (id: string) => authFetch<Alert>(`/api/alerts/${id}/read`, { method: "PUT" });
 export const markAllAlertsRead = () => authFetch<{ success: boolean }>("/api/alerts/read-all", { method: "PUT" });
+
+export type MyBid = {
+  id: string;
+  status: string;
+  submission_deadline: string | null;
+  submitted_at: string | null;
+  total_bid_amount: number | string | null;
+  opportunity_id: string;
+  title: string;
+  deadline: string | null;
+  location_city: string | null;
+};
+
+export const getMyBids = () => authFetch<MyBid[]>("/api/tenders/bids/mine");

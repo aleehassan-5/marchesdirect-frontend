@@ -201,6 +201,7 @@ export const dict: Dict = {
   alerts_empty: { fr: "Aucune alerte pour le moment.", en: "No alerts yet." },
   alerts_mark_read: { fr: "Marquer comme lu", en: "Mark as read" },
   dash_profile_complete: { fr: "Profil entreprise : {pct}% complet", en: "Company profile: {pct}% complete" },
+  dash_profile_pending: { fr: "Completude du profil non calculee", en: "Profile completeness not calculated yet" },
   dash_profile_hint: {
     fr: "Ajoutez vos attestations d'assurance et vos references pour ameliorer vos correspondances IA.",
     en: "Add your insurance certificates and references to improve your AI matches.",
@@ -367,6 +368,7 @@ export const dict: Dict = {
   admin_manage_listings: { fr: "Gerer les annonces", en: "Manage listings" },
   admin_manage_accounts: { fr: "Gerer les comptes", en: "Manage accounts" },
   admin_manage_subs: { fr: "Gerer les abonnements", en: "Manage subscriptions" },
+  admin_not_available: { fr: "Donnees non disponibles pour le moment.", en: "Data not available yet." },
   admin_subs_count: { fr: "abonnes", en: "subscribers" },
 
   // Chatbot

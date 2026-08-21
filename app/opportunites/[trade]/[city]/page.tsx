@@ -1,9 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ListingCard } from "@/components/ListingCard";
-import { listings } from "@/lib/data";
+import { EmptyState, ErrorState } from "@/components/States";
+import type { Listing } from "@/lib/data";
+import { fetchOpportunities } from "@/lib/api";
 import { useTranslation } from "@/lib/i18n";
 
 // SEO page pattern: one page per (trade x city x opportunity type), generated at scale
@@ -18,7 +21,18 @@ export default function SeoLandingPage({ params }: { params: { trade: string; ci
   const t = useTranslation();
   const trade = titleCase(params.trade);
   const city = titleCase(params.city);
-  const results = listings.slice(0, 3);
+  const [results, setResults] = useState<Listing[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(false);
+    fetchOpportunities({ q: trade, city, limit: 6 })
+      .then(setResults)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, [trade, city]);
 
   return (
     <>
@@ -33,10 +47,17 @@ export default function SeoLandingPage({ params }: { params: { trade: string; ci
           dangerouslySetInnerHTML={{ __html: t("seo_sub", { trade: trade.toLowerCase(), city }) }}
         />
 
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {results.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))}
+        <div className="mt-8">
+          {loading && <p className="text-ink-soft text-[14px]">{t("state_loading")}</p>}
+          {!loading && error && <ErrorState />}
+          {!loading && !error && results.length === 0 && <EmptyState />}
+          {!loading && !error && results.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {results.map((listing) => (
+                <ListingCard key={listing.id} listing={listing} />
+              ))}
+            </div>
+          )}
         </div>
 
         <div

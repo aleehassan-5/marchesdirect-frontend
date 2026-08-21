@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
-import { listingById } from "@/lib/data";
+import type { Listing } from "@/lib/data";
+import { fetchOpportunityById } from "@/lib/api";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ResponseWizard } from "@/components/ResponseWizard";
@@ -10,8 +12,24 @@ import { useTranslation } from "@/lib/i18n";
 
 export default function RespondPage({ params }: { params: { id: string } }) {
   const t = useTranslation();
-  const listing = listingById(params.id);
-  if (!listing) return notFound();
+  const [listing, setListing] = useState<Listing | null | undefined>(undefined);
+
+  useEffect(() => {
+    fetchOpportunityById(params.id)
+      .then(setListing)
+      .catch(() => setListing(null));
+  }, [params.id]);
+
+  if (listing === undefined) {
+    return (
+      <>
+        <Header />
+        <div className="max-w-[900px] mx-auto px-5 py-16 text-ink-soft text-[14px]">{t("state_loading")}</div>
+        <Footer />
+      </>
+    );
+  }
+  if (listing === null) return notFound();
 
   return (
     <>
