@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchBar } from "@/components/SearchBar";
@@ -50,19 +49,8 @@ export default function HomePage() {
           annotated reference (blue circle links these buttons to the cards row
           right below them, not further down the page). */}
       <section className="pb-1.5 md:pb-6">
-        <div className="max-w-[1180px] mx-auto px-5 flex gap-1.5 sm:gap-2.5 flex-wrap">
-          <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center gap-2">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-            {t("home_advisor_book")}
-          </Link>
-          <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center gap-2">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-            {t("cta_callback")}
-          </Link>
+        <div className="max-w-[1180px] mx-auto px-5">
+          <AdvisorButtons />
         </div>
       </section>
 
@@ -92,20 +80,7 @@ export default function HomePage() {
           <div className="card p-5 md:p-6">
             <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_advisor_title")}</h3>
             <p className="text-ink-soft text-[13.5px] mt-1 mb-4">{t("home_advisor_sub")}</p>
-            <div className="flex gap-2.5 flex-wrap">
-              <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center gap-2">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                {t("home_advisor_book")}
-              </Link>
-              <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center gap-2">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                {t("cta_callback")}
-              </Link>
-            </div>
+            <AdvisorButtons />
           </div>
 
           <div className="card p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">

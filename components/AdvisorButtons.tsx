@@ -9,16 +9,21 @@ const phoneIcon = (
   </svg>
 );
 
+// Book and Call back are two distinct intents, not the same generic "contact
+// us" click - each tags the lead with its own leadSource and pre-selects the
+// matching heading/copy on the contact page (see ContactForm's `intent`
+// query param handling), so the CRM can tell the two apart instead of every
+// submission looking identical regardless of which button sent it.
 export function AdvisorButtons({ className = "" }: { className?: string }) {
   const t = useTranslation();
 
   return (
     <div className={`flex gap-2.5 flex-wrap ${className}`}>
-      <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center gap-2">
+      <Link href="/contact?intent=rdv" className="btn btn-gold flex-1 sm:flex-none justify-center gap-2">
         {phoneIcon}
         {t("home_advisor_book")}
       </Link>
-      <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center gap-2">
+      <Link href="/contact?intent=callback" className="btn btn-ghost flex-1 sm:flex-none justify-center gap-2">
         {phoneIcon}
         {t("cta_callback")}
       </Link>

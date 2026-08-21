@@ -179,6 +179,16 @@ export const dict: Dict = {
     fr: "Laissez-nous vos coordonnees, une conseillere vous rappelle sous 24h.",
     en: "Leave your details and an advisor will call you back within 24 hours.",
   },
+  contact_title_rdv: { fr: "Prendre rendez-vous", en: "Book an appointment" },
+  contact_sub_rdv: {
+    fr: "Choisissez un creneau avec un conseiller pour faire le point sur vos besoins.",
+    en: "Pick a time with an advisor to go over what you need.",
+  },
+  contact_title_callback: { fr: "Etre rappele", en: "Request a callback" },
+  contact_sub_callback: {
+    fr: "Laissez-nous votre numero, un conseiller vous rappelle rapidement.",
+    en: "Leave your number and an advisor will call you back shortly.",
+  },
   contact_name: { fr: "Nom complet", en: "Full name" },
   contact_company: { fr: "Entreprise", en: "Company" },
   contact_email: { fr: "Email", en: "Email" },

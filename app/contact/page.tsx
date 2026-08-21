@@ -13,8 +13,8 @@ export default function ContactPage() {
     <>
       <Header />
       <div className="max-w-[520px] mx-auto px-5 py-14 md:py-20">
-        <ContactHeader />
         <Suspense fallback={<div className="card p-6 text-ink-soft text-[14px]">...</div>}>
+          <ContactHeader />
           <ContactForm />
         </Suspense>
       </div>

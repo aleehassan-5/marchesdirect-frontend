@@ -12,7 +12,7 @@ export function MobileActionBar() {
       style={{ paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))" }}
     >
       <Link
-        href="/contact"
+        href="/contact?intent=rdv"
         className="btn btn-gold flex-1 flex items-center justify-center gap-1.5 text-[13px] py-2.5"
       >
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -22,7 +22,7 @@ export function MobileActionBar() {
         {t("mobilebar_rdv")}
       </Link>
       <Link
-        href="/contact"
+        href="/contact?intent=callback"
         className="btn btn-ghost flex-1 flex items-center justify-center gap-1.5 text-[13px] py-2.5"
       >
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
