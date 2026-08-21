@@ -45,6 +45,20 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Advisor CTA - compact version right under the hero, before the 3 entry
+          points, matching the client's reference. A fuller version (with the
+          who-we-are card) repeats further down the page. */}
+      <section className="pb-4 md:pb-6">
+        <div className="max-w-[1180px] mx-auto px-5 flex gap-2.5 flex-wrap">
+          <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
+            {t("home_advisor_book")}
+          </Link>
+          <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center">
+            {t("cta_callback")}
+          </Link>
+        </div>
+      </section>
+
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
       <section className="pt-2 pb-3 md:py-10" id="journeys">
@@ -63,23 +77,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Advisor CTA + who-we-are — per client's reference screenshot, sits right
-          after the search card, before the stats strip. */}
+      {/* Who-we-are + advisor CTA (repeated) — per client's reference screenshot,
+          sits right after the search card, before the stats strip. */}
       <section className="pb-8 md:pb-12">
         <div className="max-w-[1180px] mx-auto px-5 flex flex-col gap-4">
-          <div className="card p-5 md:p-6">
-            <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_advisor_title")}</h3>
-            <p className="text-ink-soft text-[13.5px] mt-1 mb-4">{t("home_advisor_sub")}</p>
-            <div className="flex gap-2.5 flex-wrap">
-              <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
-                {t("home_advisor_book")}
-              </Link>
-              <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center">
-                {t("cta_callback")}
-              </Link>
-            </div>
-          </div>
-
           <div className="card p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
             <div className="flex-1">
               <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_who_title")}</h3>
@@ -94,6 +95,19 @@ export default function HomePage() {
                 <circle cx="16" cy="8" r="3" />
                 <path d="M2 20c1-4 4-6 6-6s5 2 6 6M14 14c2 0 5 2 6 6" />
               </svg>
+            </div>
+          </div>
+
+          <div className="card p-5 md:p-6">
+            <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_advisor_title")}</h3>
+            <p className="text-ink-soft text-[13.5px] mt-1 mb-4">{t("home_advisor_sub")}</p>
+            <div className="flex gap-2.5 flex-wrap">
+              <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
+                {t("home_advisor_book")}
+              </Link>
+              <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center">
+                {t("cta_callback")}
+              </Link>
             </div>
           </div>
         </div>
