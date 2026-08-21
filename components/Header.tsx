@@ -46,7 +46,7 @@ export function Header() {
           Marches<span className="text-gold">Direct</span>
         </Link>
 
-        <nav className="hidden lg:flex gap-6 xl:gap-8 text-[14.5px] font-medium text-ink-soft">
+        <nav className="hidden xl:flex gap-6 xl:gap-8 text-[14.5px] font-medium text-ink-soft">
           {links.map((l) => (
             <Link key={l.href} href={l.href} className="hover:text-ink whitespace-nowrap">
               {l.label}
@@ -58,15 +58,15 @@ export function Header() {
           <LanguageToggle />
           <ThemeToggle />
           {session ? (
-            <button onClick={handleLogout} className="hidden lg:inline-flex btn btn-ghost">
+            <button onClick={handleLogout} className="hidden xl:inline-flex btn btn-ghost">
               {t("nav_logout")}
             </button>
           ) : (
             <>
-              <Link href="/connexion" className="hidden lg:inline-flex btn btn-ghost">
+              <Link href="/connexion" className="hidden xl:inline-flex btn btn-ghost">
                 {t("nav_login")}
               </Link>
-              <Link href="/inscription" className="hidden lg:inline-flex btn btn-gold">
+              <Link href="/inscription" className="hidden xl:inline-flex btn btn-gold">
                 {t("nav_trial")}
               </Link>
             </>
@@ -75,7 +75,7 @@ export function Header() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? t("nav_menu_close") : t("nav_menu_open")}
-            className="lg:hidden w-[34px] h-[34px] rounded-lg border border-border bg-bg-elevated flex items-center justify-center text-ink-soft hover:border-gold hover:text-gold transition-colors"
+            className="xl:hidden w-[34px] h-[34px] rounded-lg border border-border bg-bg-elevated flex items-center justify-center text-ink-soft hover:border-gold hover:text-gold transition-colors"
           >
             {open ? (
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -91,7 +91,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-border-soft bg-bg px-5 py-4 flex flex-col gap-1">
+        <div className="xl:hidden border-t border-border-soft bg-bg px-5 py-4 flex flex-col gap-1">
           {links.map((l) => (
             <Link
               key={l.href}

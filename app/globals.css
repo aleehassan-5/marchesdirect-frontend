@@ -55,6 +55,7 @@ html[data-theme="light"] {
 html, body {
   overflow-x: hidden;
   width: 100%;
+  background: var(--bg);
 }
 
 body {
