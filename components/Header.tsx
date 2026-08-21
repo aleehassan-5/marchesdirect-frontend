@@ -53,8 +53,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 shrink-0">
-          <LanguageToggle />
-          <ThemeToggle />
+          {/* Mobile keeps only the logo and the hamburger menu - language and theme
+              controls move inside the menu drawer instead of crowding the header bar. */}
+          <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
           {session ? (
             <>
               <Link href="/dashboard" className="hidden xl:inline-flex btn btn-ghost">
@@ -125,6 +129,10 @@ export function Header() {
                 </Link>
               </>
             )}
+          </div>
+          <div className="flex sm:hidden items-center gap-2.5 mt-3">
+            <LanguageToggle />
+            <ThemeToggle />
           </div>
         </div>
       )}

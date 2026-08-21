@@ -29,9 +29,13 @@ export const dict: Dict = {
 
   // Homepage
   home_eyebrow: { fr: "3 flux d'opportunites", en: "3 opportunity streams" },
-  home_title_1: { fr: "Ne cherchez plus vos opportunites.", en: "Stop chasing your opportunities." },
+  home_title_1: { fr: "Les marches ?", en: "Public tenders?" },
+  home_hero_desc: {
+    fr: "Appels d'offres, marches publics et opportunites de sous-traitance adaptes a votre entreprise.",
+    en: "Tenders, public procurement, and subcontracting opportunities matched to your business.",
+  },
   home_title_gold: { fr: "appels d'offres.", en: "tenders." },
-  home_title_2: { fr: "On vous les apporte.", en: "We bring them to you." },
+  home_title_2: { fr: "On vous les apporte sur un plateau.", en: "We bring them to you on a plate." },
   home_subtitle: {
     fr: "Marches publics, appels d'offres prives et sous-traitance BTP &mdash; classes et recommandes automatiquement selon votre metier, votre rayon d'action et vos disponibilites.",
     en: "Public procurement, private tenders and construction subcontracting &mdash; automatically classified and recommended based on your trade, working radius and availability.",
