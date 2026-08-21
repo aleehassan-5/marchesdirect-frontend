@@ -40,7 +40,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur border-b border-border-soft bg-bg/90">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-5 h-[56px] md:h-[68px] flex items-center justify-between gap-4 lg:gap-6">
-        <Link href="/" className="shrink-0 font-display font-extrabold text-[15.5px] sm:text-[17px] md:text-[19px] tracking-tight flex items-center gap-1">
+        <Link href="/" className="shrink-0 font-display font-extrabold text-[18px] sm:text-[19px] md:text-[19px] tracking-tight flex items-center gap-1">
           Marches<span className="text-gold">Direct</span>
         </Link>
 
@@ -53,8 +53,12 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 shrink-0">
-          <LanguageToggle />
-          <ThemeToggle />
+          {/* Mobile keeps only the logo and the hamburger menu - language and theme
+              controls move inside the menu drawer instead of crowding the header bar. */}
+          <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
           {session ? (
             <>
               <Link href="/dashboard" className="hidden xl:inline-flex btn btn-ghost">
@@ -125,6 +129,10 @@ export function Header() {
                 </Link>
               </>
             )}
+          </div>
+          <div className="flex sm:hidden items-center gap-2.5 mt-3">
+            <LanguageToggle />
+            <ThemeToggle />
           </div>
         </div>
       )}

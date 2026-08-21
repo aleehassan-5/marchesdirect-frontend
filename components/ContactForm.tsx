@@ -7,12 +7,18 @@ import { submitLead, LeadError } from "@/lib/leadClient";
 
 export function ContactHeader() {
   const t = useTranslation();
+  const searchParams = useSearchParams();
+  const intent = searchParams.get("intent");
+
+  const titleKey = intent === "rdv" ? "contact_title_rdv" : intent === "callback" ? "contact_title_callback" : "contact_title";
+  const subKey = intent === "rdv" ? "contact_sub_rdv" : intent === "callback" ? "contact_sub_callback" : "contact_sub";
+
   return (
     <>
       <h1 className="font-display font-extrabold text-[26px] md:text-[30px] tracking-tight mb-2">
-        {t("contact_title")}
+        {t(titleKey)}
       </h1>
-      <p className="text-ink-soft text-[14.5px] mb-8">{t("contact_sub")}</p>
+      <p className="text-ink-soft text-[14.5px] mb-8">{t(subKey)}</p>
     </>
   );
 }
@@ -22,6 +28,10 @@ export function ContactForm() {
   const searchParams = useSearchParams();
   const listingRef = searchParams.get("ref");
   const listingTitle = searchParams.get("titre");
+  // "rdv" (Book) and "callback" (Être rappelé) are separate CTAs across the
+  // site - tagging leadSource by intent lets the CRM tell them apart instead
+  // of every submission landing as an indistinguishable "contact_page" lead.
+  const intent = searchParams.get("intent");
 
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -50,7 +60,13 @@ export function ContactForm() {
         // industryTrade - not ideal long-term, but it means the information
         // isn't silently thrown away either.
         industryTrade: [need, listingRef ? `(ref: ${listingRef})` : ""].filter(Boolean).join(" - ") || undefined,
-        leadSource: listingRef ? "listing_renseignement" : "contact_page",
+        leadSource: listingRef
+          ? "listing_renseignement"
+          : intent === "rdv"
+          ? "book_appointment"
+          : intent === "callback"
+          ? "callback_request"
+          : "contact_page",
       });
       setSent(true);
     } catch (err) {

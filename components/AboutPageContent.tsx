@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FaqItem } from "@/components/FaqItem";
 import { TeamMemberCard } from "@/components/TeamMemberCard";
+import { AdvisorButtons } from "@/components/AdvisorButtons";
 import { useTranslation, useLanguage, teamMembers, faqItems } from "@/lib/i18n";
 
 export function AboutPageContent() {
@@ -48,6 +49,8 @@ export function AboutPageContent() {
             <FaqItem key={item.q.fr} question={item.q[lang]} answer={item.a[lang]} />
           ))}
         </div>
+
+        <AdvisorButtons className="mt-10" />
       </div>
 
       <Footer />

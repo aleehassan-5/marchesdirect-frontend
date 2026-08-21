@@ -23,7 +23,7 @@ export function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-[140px] right-4 md:bottom-5 md:right-5 z-[60] flex flex-col items-end gap-3">
+    <div className="fixed bottom-[96px] right-4 md:bottom-5 md:right-5 z-[60] flex flex-col items-end gap-3">
       {open && (
         <div className="w-[calc(100vw-32px)] max-w-[360px] h-[440px] card shadow-2xl flex flex-col overflow-hidden">
           <div className="px-4 py-3 border-b border-border-soft flex items-center justify-between">

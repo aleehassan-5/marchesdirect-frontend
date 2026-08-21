@@ -29,9 +29,13 @@ export const dict: Dict = {
 
   // Homepage
   home_eyebrow: { fr: "3 flux d'opportunites", en: "3 opportunity streams" },
-  home_title_1: { fr: "Ne cherchez plus vos opportunites.", en: "Stop chasing your opportunities." },
+  home_title_1: { fr: "Les marches ?", en: "Public tenders?" },
+  home_hero_desc: {
+    fr: "Appels d'offres, marches publics et opportunites de sous-traitance adaptes a votre entreprise.",
+    en: "Tenders, public procurement, and subcontracting opportunities matched to your business.",
+  },
   home_title_gold: { fr: "appels d'offres.", en: "tenders." },
-  home_title_2: { fr: "On vous les apporte.", en: "We bring them to you." },
+  home_title_2: { fr: "On vous les apporte sur un plateau.", en: "We bring them to you on a plate." },
   home_subtitle: {
     fr: "Marches publics, appels d'offres prives et sous-traitance BTP &mdash; classes et recommandes automatiquement selon votre metier, votre rayon d'action et vos disponibilites.",
     en: "Public procurement, private tenders and construction subcontracting &mdash; automatically classified and recommended based on your trade, working radius and availability.",
@@ -105,6 +109,16 @@ export const dict: Dict = {
   cta_sub: { fr: "Creez votre profil entreprise une fois. On s'occupe de le faire matcher partout.", en: "Set up your company profile once. We match it everywhere for you." },
   cta_try: { fr: "Essayer gratuitement", en: "Try for free" },
   cta_callback: { fr: "Etre rappele", en: "Request a callback" },
+  mobilebar_rdv: { fr: "RDV", en: "Book" },
+  mobilebar_callback: { fr: "Etre rappele", en: "Call back" },
+  home_advisor_title: { fr: "Besoin d'un accompagnement personnalise ?", en: "Need personalized support?" },
+  home_advisor_sub: { fr: "Nos experts vous conseillent gratuitement.", en: "Our experts advise you for free." },
+  home_advisor_book: { fr: "Prendre rendez-vous", en: "Book an appointment" },
+  home_who_title: { fr: "Qui sommes-nous ?", en: "Who are we?" },
+  home_who_body: {
+    fr: "Marches Direct, c'est une equipe experte et passionnee, dediee a votre reussite sur les marches publics. Nous vous accompagnons a chaque etape, de la recherche a la signature.",
+    en: "Marches Direct is an expert, passionate team dedicated to your success in public procurement. We support you at every step, from search to signature.",
+  },
 
   // Journey listing page
   journey_filter_trade: { fr: "Tous les metiers", en: "All trades" },
@@ -191,6 +205,16 @@ export const dict: Dict = {
   contact_sub: {
     fr: "Laissez-nous vos coordonnees, une conseillere vous rappelle sous 24h.",
     en: "Leave your details and an advisor will call you back within 24 hours.",
+  },
+  contact_title_rdv: { fr: "Prendre rendez-vous", en: "Book an appointment" },
+  contact_sub_rdv: {
+    fr: "Choisissez un creneau avec un conseiller pour faire le point sur vos besoins.",
+    en: "Pick a time with an advisor to go over what you need.",
+  },
+  contact_title_callback: { fr: "Etre rappele", en: "Request a callback" },
+  contact_sub_callback: {
+    fr: "Laissez-nous votre numero, un conseiller vous rappelle rapidement.",
+    en: "Leave your number and an advisor will call you back shortly.",
   },
   contact_name: { fr: "Nom complet", en: "Full name" },
   contact_company: { fr: "Entreprise", en: "Company" },

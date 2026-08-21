@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchBar } from "@/components/SearchBar";
@@ -7,6 +8,7 @@ import { JourneyCard } from "@/components/JourneyCard";
 import { StatsStrip } from "@/components/StatsStrip";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
+import { AdvisorButtons } from "@/components/AdvisorButtons";
 import { journeys } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
 
@@ -17,7 +19,7 @@ export default function HomePage() {
     <>
       <Header />
 
-      <section className="pt-8 pb-6 md:pt-16 md:pb-10">
+      <section className="pt-4 pb-3 md:pt-16 md:pb-10">
         <div className="max-w-[1180px] mx-auto px-5 flex items-center gap-4 sm:gap-6 md:gap-10">
           <div className="flex-1 min-w-0">
             <h1 className="font-display font-extrabold text-[clamp(22px,6vw,38px)] leading-[1.15] tracking-tight">
@@ -27,42 +29,34 @@ export default function HomePage() {
             </h1>
           </div>
 
-          {/* Original illustration: a dome lifting to reveal a matched opportunity document,
-              echoing "we bring it to you" — decorative, sized down on the smallest screens
-              so it never squeezes the headline into an awkward wrap. */}
-          <div className="shrink-0 w-[92px] sm:w-[150px] md:w-[230px]" aria-hidden="true">
-            <svg viewBox="0 0 200 200" className="w-full h-auto">
-              <ellipse cx="100" cy="168" rx="78" ry="10" fill="var(--bg-elevated)" />
-              <rect x="30" y="150" width="140" height="14" rx="7" fill="var(--bg-elevated-2)" stroke="var(--border)" strokeWidth="1.5" />
-              <g>
-                <path
-                  d="M38 118c0-38 27-64 62-64s62 26 62 64"
-                  fill="none"
-                  stroke="var(--ink-soft)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  opacity="0.35"
-                />
-                <path d="M28 118h144a6 6 0 0 1 0 12H28a6 6 0 0 1 0-12z" fill="var(--bg-elevated-2)" stroke="var(--border)" strokeWidth="1.5" />
-                <circle cx="100" cy="44" r="7" fill="var(--ink-soft)" opacity="0.35" />
-                <rect x="96" y="30" width="8" height="16" rx="4" fill="var(--ink-soft)" opacity="0.35" />
-              </g>
-              <g transform="translate(63 108)">
-                <rect x="0" y="0" width="74" height="52" rx="6" fill="var(--bg-elevated)" stroke="var(--border)" strokeWidth="1.5" />
-                <rect x="10" y="12" width="40" height="4" rx="2" fill="var(--ink-faint)" />
-                <rect x="10" y="21" width="54" height="4" rx="2" fill="var(--ink-faint)" />
-                <rect x="10" y="30" width="30" height="4" rx="2" fill="var(--ink-faint)" />
-              </g>
-              <circle cx="140" cy="150" r="15" fill="var(--gold)" />
-              <path d="M133 150l5 5 9-10" fill="none" stroke="var(--gold-ink)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          {/* Client-provided cloche illustration (custom asset, checkmark badge added
+              server-side) — matches their reference exactly: a serving dome lifted to
+              reveal a matched opportunity document underneath, "we bring it to you". */}
+          <div className="shrink-0 w-[92px] sm:w-[150px] md:w-[230px]">
+            <Image
+              src="/images/hero-cloche.webp"
+              alt=""
+              width={800}
+              height={715}
+              priority
+              className="w-full h-auto"
+            />
           </div>
+        </div>
+      </section>
+
+      {/* Advisor CTA - sits directly above the 3 entry-point cards, per the client's
+          annotated reference (blue circle links these buttons to the cards row
+          right below them, not further down the page). */}
+      <section className="pb-1.5 md:pb-6">
+        <div className="max-w-[1180px] mx-auto px-5">
+          <AdvisorButtons />
         </div>
       </section>
 
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
-      <section className="pt-2 pb-3 md:py-10" id="journeys">
+      <section className="pt-0.5 pb-1.5 md:py-10" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
@@ -72,9 +66,41 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="pb-10 md:pb-14">
+      <section className="pb-3 md:pb-14">
         <div className="max-w-[1180px] mx-auto px-5">
           <SearchBar />
+        </div>
+      </section>
+
+      {/* Support/advisor CTA, then "who we are" — in that order, matching the client's
+          reference screenshot exactly (support card sits directly under the search box,
+          the who-we-are card comes after it, not before). */}
+      <section className="pb-8 md:pb-12">
+        <div className="max-w-[1180px] mx-auto px-5 flex flex-col gap-4">
+          <div className="card p-5 md:p-6">
+            <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_advisor_title")}</h3>
+            <p className="text-ink-soft text-[13.5px] mt-1 mb-4">{t("home_advisor_sub")}</p>
+            <AdvisorButtons />
+          </div>
+
+          <div className="card p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            <div className="flex-1">
+              <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_who_title")}</h3>
+              <p className="text-ink-soft text-[13.5px] mt-1 max-w-[52ch]">{t("home_who_body")}</p>
+            </div>
+            {/* Team photo placeholder: no real headshot has been uploaded yet, so this
+                stays a neutral icon block rather than a stock photo standing in for
+                the actual team. Swap for a real group photo once the client provides one. */}
+            <div className="w-full sm:w-[180px] h-[110px] rounded-[14px] bg-bg-elevated-2 border border-border-soft shrink-0 flex items-center justify-center">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="var(--ink-faint)" strokeWidth="1.5">
+                <circle cx="8" cy="8" r="3" />
+                <circle cx="16" cy="8" r="3" />
+                <path d="M2 20c1-4 4-6 6-6s5 2 6 6M14 14c2 0 5 2 6 6" />
+              </svg>
+            </div>
+          </div>
+
+          <AdvisorButtons />
         </div>
       </section>
 
