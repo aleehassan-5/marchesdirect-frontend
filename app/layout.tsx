@@ -3,7 +3,7 @@ import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/lib/i18n";
 import { Chatbot } from "@/components/Chatbot";
-import { MobileActionBar } from "@/components/MobileActionBar";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LanguageProvider>
             {children}
             <Chatbot />
-            <MobileActionBar />
+            <MobileBottomNav />
           </LanguageProvider>
         </ThemeProvider>
       </body>
