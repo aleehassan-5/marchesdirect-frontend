@@ -45,9 +45,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Advisor CTA - compact version right under the hero, before the 3 entry
+          points, matching the client's reference. A fuller version (with the
+          who-we-are card) repeats further down the page. */}
+      <section className="pb-1.5 md:pb-6">
+        <div className="max-w-[1180px] mx-auto px-5 flex gap-1.5 sm:gap-2.5 flex-wrap">
+          <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center gap-2">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            {t("home_advisor_book")}
+          </Link>
+          <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center gap-2">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            {t("cta_callback")}
+          </Link>
+        </div>
+      </section>
+
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
-      <section className="pt-2 pb-1.5 md:py-10" id="journeys">
+      <section className="pt-0.5 pb-1.5 md:py-10" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
