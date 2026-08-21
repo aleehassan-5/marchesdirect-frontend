@@ -33,8 +33,6 @@ export function Header() {
     { href: "/sous-traitance", label: t("nav_subcontract") },
     { href: "/tarifs", label: t("nav_pricing") },
     { href: "/comment-ca-marche", label: t("nav_how_it_works") },
-    { href: "/favoris", label: t("nav_saved") },
-    { href: "/dashboard", label: t("nav_dashboard") },
   ];
 
   // On mobile, the primary destinations (home/search/dashboard/profile) live in the
@@ -58,9 +56,14 @@ export function Header() {
           <LanguageToggle />
           <ThemeToggle />
           {session ? (
-            <button onClick={handleLogout} className="hidden xl:inline-flex btn btn-ghost">
-              {t("nav_logout")}
-            </button>
+            <>
+              <Link href="/dashboard" className="hidden xl:inline-flex btn btn-ghost">
+                {t("nav_dashboard")}
+              </Link>
+              <button onClick={handleLogout} className="hidden xl:inline-flex btn btn-ghost">
+                {t("nav_logout")}
+              </button>
+            </>
           ) : (
             <>
               <Link href="/connexion" className="hidden xl:inline-flex btn btn-ghost">
@@ -104,9 +107,14 @@ export function Header() {
           ))}
           <div className="flex gap-2.5 mt-4">
             {session ? (
-              <button onClick={handleLogout} className="btn btn-ghost flex-1">
-                {t("nav_logout")}
-              </button>
+              <>
+                <Link href="/dashboard" onClick={() => setOpen(false)} className="btn btn-ghost flex-1">
+                  {t("nav_dashboard")}
+                </Link>
+                <button onClick={handleLogout} className="btn btn-ghost flex-1">
+                  {t("nav_logout")}
+                </button>
+              </>
             ) : (
               <>
                 <Link href="/connexion" onClick={() => setOpen(false)} className="btn btn-ghost flex-1">
