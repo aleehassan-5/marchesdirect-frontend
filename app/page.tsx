@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchBar } from "@/components/SearchBar";
@@ -59,6 +60,42 @@ export default function HomePage() {
       <section className="pb-10 md:pb-14">
         <div className="max-w-[1180px] mx-auto px-5">
           <SearchBar />
+        </div>
+      </section>
+
+      {/* Advisor CTA + who-we-are — per client's reference screenshot, sits right
+          after the search card, before the stats strip. */}
+      <section className="pb-8 md:pb-12">
+        <div className="max-w-[1180px] mx-auto px-5 flex flex-col gap-4">
+          <div className="card p-5 md:p-6">
+            <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_advisor_title")}</h3>
+            <p className="text-ink-soft text-[13.5px] mt-1 mb-4">{t("home_advisor_sub")}</p>
+            <div className="flex gap-2.5 flex-wrap">
+              <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
+                {t("home_advisor_book")}
+              </Link>
+              <Link href="/contact" className="btn btn-ghost flex-1 sm:flex-none justify-center">
+                {t("cta_callback")}
+              </Link>
+            </div>
+          </div>
+
+          <div className="card p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+            <div className="flex-1">
+              <h3 className="font-display font-bold text-[16px] md:text-[17px]">{t("home_who_title")}</h3>
+              <p className="text-ink-soft text-[13.5px] mt-1 max-w-[52ch]">{t("home_who_body")}</p>
+            </div>
+            {/* Team photo placeholder: no real headshot has been uploaded yet, so this
+                stays a neutral icon block rather than a stock photo standing in for
+                the actual team. Swap for a real group photo once the client provides one. */}
+            <div className="w-full sm:w-[180px] h-[110px] rounded-[14px] bg-bg-elevated-2 border border-border-soft shrink-0 flex items-center justify-center">
+              <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="var(--ink-faint)" strokeWidth="1.5">
+                <circle cx="8" cy="8" r="3" />
+                <circle cx="16" cy="8" r="3" />
+                <path d="M2 20c1-4 4-6 6-6s5 2 6 6M14 14c2 0 5 2 6 6" />
+              </svg>
+            </div>
+          </div>
         </div>
       </section>
 

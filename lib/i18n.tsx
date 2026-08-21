@@ -105,6 +105,14 @@ export const dict: Dict = {
   cta_sub: { fr: "Creez votre profil entreprise une fois. On s'occupe de le faire matcher partout.", en: "Set up your company profile once. We match it everywhere for you." },
   cta_try: { fr: "Essayer gratuitement", en: "Try for free" },
   cta_callback: { fr: "Etre rappele", en: "Request a callback" },
+  home_advisor_title: { fr: "Besoin d'un accompagnement personnalise ?", en: "Need personalized support?" },
+  home_advisor_sub: { fr: "Nos experts vous conseillent gratuitement.", en: "Our experts advise you for free." },
+  home_advisor_book: { fr: "Prendre rendez-vous", en: "Book an appointment" },
+  home_who_title: { fr: "Qui sommes-nous ?", en: "Who are we?" },
+  home_who_body: {
+    fr: "Marches Direct, c'est une equipe experte et passionnee, dediee a votre reussite sur les marches publics. Nous vous accompagnons a chaque etape, de la recherche a la signature.",
+    en: "Marches Direct is an expert, passionate team dedicated to your success in public procurement. We support you at every step, from search to signature.",
+  },
 
   // Journey listing page
   journey_filter_trade: { fr: "Tous les metiers", en: "All trades" },
