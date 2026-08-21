@@ -40,7 +40,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur border-b border-border-soft bg-bg/90">
       <div className="max-w-[1180px] mx-auto px-4 sm:px-5 h-[56px] md:h-[68px] flex items-center justify-between gap-4 lg:gap-6">
-        <Link href="/" className="shrink-0 font-display font-extrabold text-[15.5px] sm:text-[17px] md:text-[19px] tracking-tight flex items-center gap-1">
+        <Link href="/" className="shrink-0 font-display font-extrabold text-[18px] sm:text-[19px] md:text-[19px] tracking-tight flex items-center gap-1">
           Marches<span className="text-gold">Direct</span>
         </Link>
 

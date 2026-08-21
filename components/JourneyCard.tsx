@@ -52,12 +52,12 @@ export function JourneyCard({
   return (
     <Link
       href={`/${slug}`}
-      className="card p-4 md:p-7 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex flex-col items-center text-center"
+      className="card p-3.5 md:p-7 group hover:-translate-y-1 active:scale-[0.99] transition-transform flex flex-col items-center text-center"
     >
-      <div className="w-[48px] h-[48px] md:w-[56px] md:h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-3 md:mb-4 text-gold">
+      <div className="w-[42px] h-[42px] md:w-[56px] md:h-[56px] shrink-0 rounded-full border-2 border-gold flex items-center justify-center mb-2 md:mb-4 text-gold">
         {icons[slug]}
       </div>
-      <h3 className="font-display font-bold text-[15px] leading-[1.2] md:text-[20px] mb-3 md:mb-4 text-ink">{label}</h3>
+      <h3 className="font-display font-bold text-[14px] leading-[1.2] md:text-[20px] mb-2 md:mb-4 text-ink">{label}</h3>
       <svg
         viewBox="0 0 24 24"
         fill="none"
