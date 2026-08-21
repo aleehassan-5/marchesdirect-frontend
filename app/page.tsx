@@ -48,8 +48,8 @@ export default function HomePage() {
       {/* Advisor CTA - compact version right under the hero, before the 3 entry
           points, matching the client's reference. A fuller version (with the
           who-we-are card) repeats further down the page. */}
-      <section className="pb-2 md:pb-6">
-        <div className="max-w-[1180px] mx-auto px-5 flex gap-2.5 flex-wrap">
+      <section className="pb-1.5 md:pb-6">
+        <div className="max-w-[1180px] mx-auto px-5 flex gap-1.5 sm:gap-2.5 flex-wrap">
           <Link href="/contact" className="btn btn-gold flex-1 sm:flex-none justify-center">
             {t("home_advisor_book")}
           </Link>
@@ -61,7 +61,7 @@ export default function HomePage() {
 
       {/* The 3 entry points are the core decision on this page, so they sit right under
           the hero with minimal scroll, and get the largest, boldest cards on mobile. */}
-      <section className="pt-1 pb-2 md:py-10" id="journeys">
+      <section className="pt-0.5 pb-1.5 md:py-10" id="journeys">
         <div className="max-w-[1180px] mx-auto px-5">
           <div className="grid grid-cols-3 gap-2.5 md:gap-3.5">
             {(Object.keys(journeys) as Array<keyof typeof journeys>).map((key) => (
@@ -71,7 +71,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="pb-6 md:pb-14">
+      <section className="pb-3 md:pb-14">
         <div className="max-w-[1180px] mx-auto px-5">
           <SearchBar />
         </div>
