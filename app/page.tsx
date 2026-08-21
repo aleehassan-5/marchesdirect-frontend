@@ -9,6 +9,7 @@ import { JourneyCard } from "@/components/JourneyCard";
 import { StatsStrip } from "@/components/StatsStrip";
 import { HowItWorks } from "@/components/HowItWorks";
 import { CTA } from "@/components/CTA";
+import { AdvisorButtons } from "@/components/AdvisorButtons";
 import { journeys } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
 
@@ -123,6 +124,8 @@ export default function HomePage() {
               </svg>
             </div>
           </div>
+
+          <AdvisorButtons />
         </div>
       </section>
 

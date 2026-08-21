@@ -8,7 +8,7 @@ export function MobileActionBar() {
 
   return (
     <div
-      className="md:hidden fixed bottom-[64px] inset-x-0 z-40 flex gap-2 px-3 py-2 border-t border-border-soft bg-[var(--bg-elevated-2)]"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 flex gap-2 px-3 py-2 border-t border-border-soft bg-[var(--bg-elevated-2)]"
       style={{ paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))" }}
     >
       <Link

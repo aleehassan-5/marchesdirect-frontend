@@ -3,7 +3,6 @@ import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/lib/i18n";
 import { Chatbot } from "@/components/Chatbot";
-import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { MobileActionBar } from "@/components/MobileActionBar";
 import "./globals.css";
 
@@ -34,13 +33,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" data-theme="dark" className={`${inter.variable} ${plexMono.variable}`}>
-      <body className="pb-[calc(116px+env(safe-area-inset-bottom))] md:pb-0">
+      <body className="pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0">
         <ThemeProvider>
           <LanguageProvider>
             {children}
             <Chatbot />
             <MobileActionBar />
-            <MobileBottomNav />
           </LanguageProvider>
         </ThemeProvider>
       </body>
