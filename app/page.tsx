@@ -30,7 +30,7 @@ export default function HomePage() {
           {/* Original illustration: a dome lifting to reveal a matched opportunity document,
               echoing "we bring it to you" — decorative, hidden on very small screens where
               there isn't room for it next to the headline. */}
-          <div className="shrink-0 w-[78px] sm:w-[110px] md:w-[190px]" aria-hidden="true">
+          <div className="shrink-0 w-[110px] sm:w-[150px] md:w-[230px]" aria-hidden="true">
             <svg viewBox="0 0 200 200" className="w-full h-auto">
               <ellipse cx="100" cy="168" rx="78" ry="10" fill="var(--bg-elevated)" />
               <rect x="30" y="150" width="140" height="14" rx="7" fill="var(--bg-elevated-2)" stroke="var(--border)" strokeWidth="1.5" />
