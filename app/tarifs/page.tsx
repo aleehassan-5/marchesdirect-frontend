@@ -111,7 +111,10 @@ export default function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/inscription" className={`btn ${p.highlight ? "btn-gold" : "btn-ghost"}`}>
+              <Link
+                href={/rappel|callback/i.test(p.cta) ? "/contact" : "/inscription"}
+                className={`btn ${p.highlight ? "btn-gold" : "btn-ghost"}`}
+              >
                 {p.cta}
               </Link>
             </div>

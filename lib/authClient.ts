@@ -153,3 +153,49 @@ export async function getMe(): Promise<MeResponse> {
   }
   return res.json();
 }
+
+// Generic authenticated fetch helper for simple resources like alerts, so we don't
+// need a bespoke client file for every single small authenticated endpoint.
+export async function authFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
+  const session = getSession();
+  if (!session) throw new AuthError("Not logged in");
+
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      ...options,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.accessToken}`,
+        ...(options.headers || {}),
+      },
+    });
+  } catch {
+    throw new AuthError(`Impossible de contacter le serveur (${API_BASE}).`);
+  }
+
+  if (res.status === 401) {
+    clearSession();
+    throw new AuthError("Session expiree, veuillez vous reconnecter.");
+  }
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new AuthError(data.error || "Une erreur est survenue.");
+  }
+  // Some endpoints (e.g. PUT read-all) return no meaningful body.
+  return res.json().catch(() => undefined as unknown as T);
+}
+
+export type Alert = {
+  id: string;
+  alert_type: string;
+  title: string;
+  message: string;
+  is_read: boolean;
+  created_at: string;
+  opportunity_id: string | null;
+};
+
+export const getAlerts = () => authFetch<Alert[]>("/api/alerts");
+export const markAlertRead = (id: string) => authFetch<Alert>(`/api/alerts/${id}/read`, { method: "PUT" });
+export const markAllAlertsRead = () => authFetch<{ success: boolean }>("/api/alerts/read-all", { method: "PUT" });

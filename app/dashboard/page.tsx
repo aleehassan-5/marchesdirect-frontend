@@ -61,8 +61,10 @@ export default function DashboardPage() {
             </h1>
           </div>
           <div className="flex flex-wrap gap-2.5">
+            <a href="/favoris" className="btn btn-ghost">{t("dash_my_selection")}</a>
             <a href="/mes-reponses" className="btn btn-ghost">{t("dash_my_responses")}</a>
             <a href="/profil-entreprise" className="btn btn-ghost">{t("dash_complete_profile")}</a>
+            <a href="/mes-alertes" className="btn btn-ghost">{t("dash_my_alerts")}</a>
           </div>
         </div>
 

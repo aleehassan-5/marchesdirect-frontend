@@ -32,7 +32,7 @@ export function Header() {
     { href: "/marches-publics", label: t("nav_public") },
     { href: "/sous-traitance", label: t("nav_subcontract") },
     { href: "/tarifs", label: t("nav_pricing") },
-    { href: "/a-propos", label: t("nav_about") },
+    { href: "/comment-ca-marche", label: t("nav_how_it_works") },
     { href: "/favoris", label: t("nav_saved") },
     { href: "/dashboard", label: t("nav_dashboard") },
   ];
