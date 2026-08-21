@@ -14,6 +14,7 @@ export const dict: Dict = {
   nav_pricing: { fr: "Tarifs", en: "Pricing" },
   nav_about: { fr: "A propos", en: "About us" },
   nav_how_it_works: { fr: "Comment ca marche", en: "How it works" },
+  nav_faq: { fr: "FAQ", en: "FAQ" },
   nav_dashboard: { fr: "Tableau de bord", en: "Dashboard" },
   nav_saved: { fr: "Mes opportunites", en: "Saved" },
   nav_login: { fr: "Connexion", en: "Log in" },
@@ -519,10 +520,22 @@ export const dict: Dict = {
   about_video_intro: { fr: "Video de presentation", en: "Video introduction" },
   about_video_close: { fr: "Fermer", en: "Close" },
   about_faq_title: { fr: "Questions frequentes", en: "Frequently asked questions" },
+  about_who_sub: {
+    fr: "Marches Direct accompagne les entreprises sur les parties commerciales, administratives et techniques, de la veille jusqu'a la signature.",
+    en: "Marches Direct supports companies on the commercial, administrative and technical sides, from monitoring through to signature.",
+  },
+  about_cta_title: { fr: "Parlons de votre projet.", en: "Let's talk about your project." },
+  faq_eyebrow: { fr: "FAQ", en: "FAQ" },
+  faq_page_title: { fr: "Questions frequentes", en: "Frequently asked questions" },
+  faq_page_sub: { fr: "Les reponses aux principales questions avant de demarrer.", en: "Answers to the main questions before you get started." },
+  faq_cta_title_1: { fr: "Pret a", en: "Ready to" },
+  faq_cta_title_2: { fr: "gagner plus de marches ?", en: "win more contracts?" },
+  faq_cta_sub: { fr: "Parlons de vos objectifs des aujourd'hui.", en: "Let's talk about your goals today." },
 };
 
 export const teamMembers = [
   { name: "Toupain Rodolphe", role: { fr: "President", en: "President" }, photo: "", videoUrl: "" },
+  { name: "Charline Goessen", role: { fr: "Assistante de Direction", en: "Executive Assistant" }, photo: "", videoUrl: "" },
   { name: "Toupain Anthony", role: { fr: "Manager General & Designer", en: "General Manager & Designer" }, photo: "", videoUrl: "" },
   { name: "Garance Marchal", role: { fr: "Community Manageur", en: "Community Manager" }, photo: "", videoUrl: "" },
 ];
