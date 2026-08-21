@@ -13,6 +13,7 @@ export const dict: Dict = {
   nav_subcontract: { fr: "Sous-traitance", en: "Subcontracting" },
   nav_pricing: { fr: "Tarifs", en: "Pricing" },
   nav_about: { fr: "A propos", en: "About us" },
+  nav_team: { fr: "Notre equipe", en: "Our team" },
   nav_how_it_works: { fr: "Comment ca marche", en: "How it works" },
   nav_faq: { fr: "FAQ", en: "FAQ" },
   nav_dashboard: { fr: "Tableau de bord", en: "Dashboard" },
@@ -531,6 +532,64 @@ export const dict: Dict = {
   faq_cta_title_1: { fr: "Pret a", en: "Ready to" },
   faq_cta_title_2: { fr: "gagner plus de marches ?", en: "win more contracts?" },
   faq_cta_sub: { fr: "Parlons de vos objectifs des aujourd'hui.", en: "Let's talk about your goals today." },
+
+  // /a-propos - intro page
+  intro_eligibility_title: { fr: "Services reserves aux entreprises qui ont :", en: "Services reserved for companies with:" },
+  intro_eligibility_1: { fr: "+2 ans d'anciennete", en: "2+ years in business" },
+  intro_eligibility_2: { fr: "Plus de 3 salaries", en: "More than 3 employees" },
+  intro_eyebrow: { fr: "A propos", en: "About us" },
+  intro_title_1: { fr: "Les marches ?", en: "Tenders?" },
+  intro_title_2: { fr: "On vous les apporte sur un plateau.", en: "We bring them to you on a plate." },
+  intro_sub: {
+    fr: "Appels d'offres, marches publics et opportunites de sous-traitance adaptes a votre entreprise.",
+    en: "Tenders, public procurement and subcontracting opportunities matched to your company.",
+  },
+  intro_bullet_1_bold: { fr: "Gagnez", en: "Save" },
+  intro_bullet_1_rest: { fr: "du temps", en: "time" },
+  intro_bullet_2_bold: { fr: "Augmentez", en: "Increase" },
+  intro_bullet_2_rest: { fr: "votre chiffre d'affaires", en: "your revenue" },
+  intro_bullet_3_bold: { fr: "Soyez accompagne", en: "Get supported" },
+  intro_bullet_3_rest: { fr: "de A a Z", en: "from A to Z" },
+  intro_bullet_4_bold: { fr: "Ameliorez", en: "Improve" },
+  intro_bullet_4_rest: { fr: "votre taux de signature", en: "your win rate" },
+  intro_stat_sources_val: { fr: "12+", en: "12+" },
+  intro_stat_sources_label: { fr: "sources connectees en continu", en: "sources connected continuously" },
+  intro_stat_freq_val: { fr: "2-6h", en: "2-6h" },
+  intro_stat_freq_label: { fr: "frequence de collecte par source", en: "collection frequency per source" },
+  intro_stat_accuracy_val: { fr: "90%", en: "90%" },
+  intro_stat_accuracy_label: { fr: "seuil de precision exige du chatbot IA", en: "accuracy threshold required of the AI chatbot" },
+  intro_stat_invented_val: { fr: "0", en: "0" },
+  intro_stat_invented_label: { fr: "donnee inventee - tout est source", en: "invented data - everything is sourced" },
+  intro_team_photo_note: { fr: "Photo d'equipe a venir.", en: "Team photo coming soon." },
+
+  // /comment-ca-marche - 6-step process page
+  process_eyebrow: { fr: "Comment ca marche", en: "How it works" },
+  process_title: { fr: "Du reperage de l'opportunite jusqu'au dossier pret a deposer.", en: "From spotting the opportunity to a bid package ready to submit." },
+  process_sub: {
+    fr: "Un parcours simple, clair et rapide pour transformer une opportunite en dossier pret a envoyer.",
+    en: "A simple, clear and fast path to turn an opportunity into a bid package ready to send.",
+  },
+  process_step1_title: { fr: "On surveille", en: "We monitor" },
+  process_step1_body: { fr: "Nos connecteurs collectent BOAMP, PLACE, JOUE et d'autres sources publiques et privees.", en: "Our connectors collect BOAMP, PLACE, JOUE and other public and private sources." },
+  process_step2_title: { fr: "On trie & qualifie", en: "We sort & qualify" },
+  process_step2_body: { fr: "L'IA classe chaque opportunite par metier, CPV, distance et montant.", en: "The AI classifies each opportunity by trade, CPV, distance and amount." },
+  process_step3_title: { fr: "On prepare votre dossier", en: "We prepare your file" },
+  process_step3_body: { fr: "Le dossier est genere a partir de votre profil entreprise : DC1, DC2, memoire technique, BPU.", en: "The file is generated from your company profile: DC1, DC2, technical memo, BPU." },
+  process_step4_title: { fr: "Vous validez", en: "You validate" },
+  process_step4_body: { fr: "Vous verifiez et ajustez le dossier. Nous restons disponibles pour conseil et complements.", en: "You check and adjust the file. We remain available for advice and additions." },
+  process_step5_title: { fr: "On depose", en: "We submit" },
+  process_step5_body: { fr: "Nous deposons les dossiers en votre nom sur les plateformes de dematerialisation.", en: "We submit the files on your behalf on the dematerialisation platforms." },
+  process_step6_title: { fr: "Vous gagnez du temps", en: "You save time" },
+  process_step6_body: { fr: "Vous vous concentrez sur votre activite pendant que nous maximisons vos chances.", en: "You focus on your business while we maximise your chances." },
+  process_help_title: { fr: "Besoin d'un accompagnement personnalise ?", en: "Need personalised support?" },
+
+  // /notre-equipe
+  team_eyebrow: { fr: "Notre equipe", en: "Our team" },
+  team_page_title: { fr: "Rencontrez nos experts", en: "Meet our experts" },
+  team_page_sub: {
+    fr: "Une equipe engagee, experimentee et specialisee dans la veille et la reponse aux appels d'offres.",
+    en: "A committed, experienced team specialised in monitoring and responding to tenders.",
+  },
 };
 
 export const teamMembers = [

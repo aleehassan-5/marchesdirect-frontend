@@ -36,6 +36,12 @@ export default function FaqPage() {
           <p className="text-[14px] opacity-75 mb-5">{t("faq_cta_sub")}</p>
           <AdvisorButtons />
         </div>
+
+        <div className="flex gap-4 justify-center mt-6 text-[13px] font-semibold flex-wrap">
+          <a href="/a-propos" className="text-gold hover:underline underline-offset-4">{t("nav_about")} &rarr;</a>
+          <a href="/comment-ca-marche" className="text-gold hover:underline underline-offset-4">{t("nav_how_it_works")} &rarr;</a>
+          <a href="/notre-equipe" className="text-gold hover:underline underline-offset-4">{t("nav_team")} &rarr;</a>
+        </div>
       </div>
 
       <Footer />
