@@ -36,9 +36,21 @@ export type Listing = {
   distanceKm: number;
   budget: string;
   deadline: string;
+  deadlineIso?: string;
   cpv?: string;
   trade: string;
   matchScore: number;
   status: "Non analyse" | "Analyse";
+  description?: string;
+  publicationDate?: string;
+  estimatedStartDate?: string;
+  estimatedEndDate?: string;
+  locationCity?: string;
+  locationRegion?: string;
+  // Structured facts extracted from the source record, each explicitly flagged
+  // as available or not - see opportunities.ai_extracted_facts in the backend
+  // schema. Lets the detail page show only what's genuinely known instead of
+  // inventing values for fields the source didn't provide.
+  extractedFacts?: Record<string, { value: string; available: boolean }>;
 };
 

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ListingDetailContent } from "@/components/ListingDetailContent";
+import { SousTraitanceDetailContent } from "@/components/SousTraitanceDetailContent";
 import { journeys, type JourneyKey } from "@/lib/data";
 import { fetchOpportunityById } from "@/lib/api";
 
@@ -19,7 +20,11 @@ export default async function ListingDetailPage({
   return (
     <>
       <Header />
-      <ListingDetailContent listing={listing} journeyKey={params.journey as JourneyKey} />
+      {params.journey === "sous-traitance" ? (
+        <SousTraitanceDetailContent listing={listing} />
+      ) : (
+        <ListingDetailContent listing={listing} journeyKey={params.journey as JourneyKey} />
+      )}
       <Footer />
     </>
   );

@@ -23,12 +23,15 @@ export type ApiOpportunity = {
   description: string | null;
   deadline: string | null;
   publication_date: string;
+  estimated_start_date?: string | null;
+  estimated_end_date?: string | null;
   estimated_value: number | string | null;
   currency?: string;
   location_city: string | null;
   location_region: string | null;
   ai_classification_status: string;
   ai_summary: string | null;
+  ai_extracted_facts?: Record<string, { value: string; available: boolean }> | null;
   status: string;
   journey: string;
   trade_name: string | null;
@@ -105,10 +108,18 @@ export function toListing(o: ApiOpportunity): Listing {
     distanceKm: 0, // real distance requires the matching engine (Milestone 6) - not yet live
     budget: formatBudget(o.estimated_value, o.currency),
     deadline: formatDeadline(o.deadline),
+    deadlineIso: o.deadline ?? undefined,
     cpv: o.cpv_display,
     trade: o.trade_name || "Non classe",
     matchScore: 0, // real score requires the matching engine (Milestone 6) - not yet live
     status: o.ai_classification_status === "classified" ? "Analyse" : "Non analyse",
+    description: o.description ?? undefined,
+    publicationDate: o.publication_date,
+    estimatedStartDate: o.estimated_start_date ?? undefined,
+    estimatedEndDate: o.estimated_end_date ?? undefined,
+    locationCity: o.location_city ?? undefined,
+    locationRegion: o.location_region ?? undefined,
+    extractedFacts: o.ai_extracted_facts ?? undefined,
   };
 }
 
