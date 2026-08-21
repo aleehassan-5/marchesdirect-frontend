@@ -109,6 +109,8 @@ export const dict: Dict = {
   cta_sub: { fr: "Creez votre profil entreprise une fois. On s'occupe de le faire matcher partout.", en: "Set up your company profile once. We match it everywhere for you." },
   cta_try: { fr: "Essayer gratuitement", en: "Try for free" },
   cta_callback: { fr: "Etre rappele", en: "Request a callback" },
+  mobilebar_rdv: { fr: "RDV", en: "Book" },
+  mobilebar_callback: { fr: "Etre rappele", en: "Call back" },
   home_advisor_title: { fr: "Besoin d'un accompagnement personnalise ?", en: "Need personalized support?" },
   home_advisor_sub: { fr: "Nos experts vous conseillent gratuitement.", en: "Our experts advise you for free." },
   home_advisor_book: { fr: "Prendre rendez-vous", en: "Book an appointment" },
