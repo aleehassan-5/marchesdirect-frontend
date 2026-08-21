@@ -18,9 +18,9 @@ export default function HomePage() {
       <Header />
 
       <section className="pt-8 pb-6 md:pt-16 md:pb-10">
-        <div className="max-w-[1180px] mx-auto px-5 flex items-center gap-6 md:gap-10">
+        <div className="max-w-[1180px] mx-auto px-5 flex items-center gap-4 sm:gap-6 md:gap-10">
           <div className="flex-1 min-w-0">
-            <h1 className="font-display font-extrabold text-[clamp(24px,6vw,38px)] leading-[1.12] tracking-tight max-w-[22ch]">
+            <h1 className="font-display font-extrabold text-[clamp(22px,6vw,38px)] leading-[1.15] tracking-tight">
               {t("home_title_1")}
               <br />
               <span className="text-gold">{t("home_title_2")}</span>
@@ -28,9 +28,9 @@ export default function HomePage() {
           </div>
 
           {/* Original illustration: a dome lifting to reveal a matched opportunity document,
-              echoing "we bring it to you" — decorative, hidden on very small screens where
-              there isn't room for it next to the headline. */}
-          <div className="shrink-0 w-[110px] sm:w-[150px] md:w-[230px]" aria-hidden="true">
+              echoing "we bring it to you" — decorative, sized down on the smallest screens
+              so it never squeezes the headline into an awkward wrap. */}
+          <div className="shrink-0 w-[92px] sm:w-[150px] md:w-[230px]" aria-hidden="true">
             <svg viewBox="0 0 200 200" className="w-full h-auto">
               <ellipse cx="100" cy="168" rx="78" ry="10" fill="var(--bg-elevated)" />
               <rect x="30" y="150" width="140" height="14" rx="7" fill="var(--bg-elevated-2)" stroke="var(--border)" strokeWidth="1.5" />
