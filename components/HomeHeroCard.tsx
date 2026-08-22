@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { JourneyKey } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
 import { AdvisorButtons } from "@/components/AdvisorButtons";
@@ -90,20 +91,13 @@ export function HomeHeroCard() {
           <AdvisorButtons className="mt-5" />
         </div>
 
-        {/* Qui sommes-nous - separate card right under the hero, per reference.
-            Team photo placeholder: no real circular team photo has been provided
-            yet, so this uses a neutral icon rather than a stock image standing in
-            for the real team - swap /images/team-circle.webp in once supplied. */}
+        {/* Qui sommes-nous - separate card right under the hero, per reference. */}
         <Link
           href="/notre-equipe"
           className="card mt-4 p-4 md:p-5 flex items-center gap-4 group hover:border-gold/40 transition-colors"
         >
-          <div className="w-[64px] h-[64px] md:w-[76px] md:h-[76px] rounded-full border-2 border-gold shrink-0 bg-bg-elevated-2 flex items-center justify-center text-gold">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.6">
-              <circle cx="8" cy="8" r="3" />
-              <circle cx="16" cy="9" r="2.4" />
-              <path d="M2.5 20v-1.3c0-2.4 2.2-4.3 5.5-4.3s5.5 1.9 5.5 4.3V20M14.8 14.6c2 .3 3.7 1.9 3.7 4V20" />
-            </svg>
+          <div className="w-[64px] h-[64px] md:w-[76px] md:h-[76px] rounded-full shrink-0 overflow-hidden relative">
+            <Image src="/images/team-circle.webp" alt="" fill sizes="76px" className="object-cover" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="font-display font-bold text-[15px] md:text-[16.5px]">{t("home_who_title")}</h3>
