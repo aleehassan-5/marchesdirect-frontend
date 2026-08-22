@@ -6,11 +6,6 @@ import type { JourneyKey } from "@/lib/data";
 import { useTranslation } from "@/lib/i18n";
 import { AdvisorButtons } from "@/components/AdvisorButtons";
 
-// Icons matched to the client's reference mockup: a classic institution/
-// pediment building for public procurement, a city skyline for private
-// tenders, and a handshake for subcontracting - distinct from the circular
-// JourneyCard icons used on /[journey] listing pages, which follow a
-// different (rounded, single-stroke-shape) icon set by design.
 const rowIcons: Record<JourneyKey, JSX.Element> = {
   "marches-publics": (
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -50,48 +45,141 @@ export function HomeHeroCard() {
     <section className="pt-4 pb-4 md:pt-14 md:pb-10">
       <div className="max-w-[1180px] mx-auto px-5">
         <div className="card border-gold/60 p-5 md:p-9 relative overflow-hidden">
-          {/* Upward trend line - purely decorative, echoes the client's reference
-              (an orange arrow trending up behind the hero title). */}
           <svg
             viewBox="0 0 200 140"
-            className="pointer-events-none absolute right-0 top-0 w-[46%] max-w-[220px] h-auto opacity-90"
+            className="pointer-events-none absolute right-0 top-0 w-[55%] max-w-[220px] h-auto"
+            preserveAspectRatio="xMaxYMin meet"
             fill="none"
           >
             <defs>
-              <filter id="heroArrowGlow" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="4.5" result="blur" />
+              {/* Blue gradient background matching the card */}
+              <linearGradient id="blueBg" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor="#0B1A33" stopOpacity="0" />
+                <stop offset="20%" stopColor="#0B1A33" stopOpacity="0.04" />
+                <stop offset="50%" stopColor="#132A4F" stopOpacity="0.1" />
+                <stop offset="75%" stopColor="#1A3A6B" stopOpacity="0.18" />
+                <stop offset="100%" stopColor="#1E4D8C" stopOpacity="0.3" />
+              </linearGradient>
+
+              {/* Neon red glow - diffused and soft */}
+              <radialGradient id="neonGlow" cx="85%" cy="15%" r="55%">
+                <stop offset="0%" stopColor="#FF1A1A" stopOpacity="0.75" />
+                <stop offset="15%" stopColor="#E60000" stopOpacity="0.45" />
+                <stop offset="35%" stopColor="#CC0000" stopOpacity="0.2" />
+                <stop offset="60%" stopColor="#B30000" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#990000" stopOpacity="0" />
+              </radialGradient>
+
+              {/* Brighter core near the tip */}
+              <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="#FF3333" stopOpacity="0.7" />
+                <stop offset="40%" stopColor="#FF1A1A" stopOpacity="0.3" />
+                <stop offset="70%" stopColor="#E60000" stopOpacity="0.1" />
+                <stop offset="100%" stopColor="#CC0000" stopOpacity="0" />
+              </radialGradient>
+
+              {/* Soft glow filter for the neon effect */}
+              <filter id="neonFilter" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feColorMatrix
+                  in="blur"
+                  type="matrix"
+                  values="1.2 0 0 0 0.15
+                          0.2 0.8 0 0 0.05
+                          0 0.1 0.6 0 0
+                          0 0 0 0.6 0"
+                  result="coloredBlur"
+                />
                 <feMerge>
-                  <feMergeNode in="blur" />
+                  <feMergeNode in="coloredBlur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
-              <radialGradient id="heroArrowSpark" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="var(--gold)" stopOpacity="0.9" />
-                <stop offset="60%" stopColor="var(--gold)" stopOpacity="0.25" />
-                <stop offset="100%" stopColor="var(--gold)" stopOpacity="0" />
-              </radialGradient>
+
+              {/* Red outline - fades at the tail */}
+              <linearGradient id="redOutline" x1="0%" y1="0%" x2="100%" y2="15%">
+                <stop offset="0%" stopColor="#FF1A1A" stopOpacity="0" />
+                <stop offset="10%" stopColor="#FF1A1A" stopOpacity="0.03" />
+                <stop offset="25%" stopColor="#E60000" stopOpacity="0.2" />
+                <stop offset="50%" stopColor="#E60000" stopOpacity="0.5" />
+                <stop offset="75%" stopColor="#CC0000" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#FF1A1A" stopOpacity="1" />
+              </linearGradient>
+
+              {/* Yellow fill - fades at the tail */}
+              <linearGradient id="yellowFill" x1="0%" y1="0%" x2="100%" y2="15%">
+                <stop offset="0%" stopColor="#FFD700" stopOpacity="0" />
+                <stop offset="10%" stopColor="#FFD700" stopOpacity="0.03" />
+                <stop offset="25%" stopColor="#FFC200" stopOpacity="0.2" />
+                <stop offset="50%" stopColor="#FFB300" stopOpacity="0.5" />
+                <stop offset="75%" stopColor="#FFA500" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#FF8C00" stopOpacity="1" />
+              </linearGradient>
             </defs>
 
-            {/* Soft glow halo behind the arrowhead */}
-            <circle cx="185" cy="15" r="22" fill="url(#heroArrowSpark)" />
+            {/* Blue gradient background */}
+            <rect x="0" y="0" width="200" height="140" fill="url(#blueBg)" rx="12" />
 
+            {/* Neon glow behind the entire arrow */}
+            <circle cx="175" cy="20" r="48" fill="url(#neonGlow)" opacity="0.65" />
+            <circle cx="175" cy="20" r="20" fill="url(#coreGlow)" opacity="0.5" />
+            <circle cx="175" cy="20" r="10" fill="url(#coreGlow)" opacity="0.4" />
+
+            {/* 
+              Main arrow with ROUNDED CORNERS using Quadratic Beziers (Q)
+              Each Q creates a smooth rounded corner at every direction change
+            */}
             <path
-              d="M10 110 L55 85 L85 100 L120 55 L150 65 L185 15"
-              stroke="var(--gold)"
-              strokeWidth="4"
+              d="M 15 115
+                 Q 30 106 45 98
+                 Q 58 103 70 107
+                 Q 82 91 100 72
+                 Q 115 78 125 82
+                 Q 150 50 175 20"
+              stroke="url(#redOutline)"
+              strokeWidth="3.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              filter="url(#heroArrowGlow)"
+              filter="url(#neonFilter)"
+              opacity="0.95"
             />
-            <path d="M185 15 L170 20 M185 15 L182 32" stroke="var(--gold)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" filter="url(#heroArrowGlow)" />
 
-            {/* Sparkle/shine burst at the tip */}
-            <g stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" filter="url(#heroArrowGlow)">
-              <path d="M185 3 L185 -3" opacity="0.9" />
-              <path d="M197 15 L203 15" opacity="0.7" />
-              <path d="M193.5 6.5 L197.5 2.5" opacity="0.8" />
-            </g>
-            <circle cx="185" cy="15" r="2.4" fill="var(--gold)" filter="url(#heroArrowGlow)" />
+            {/* Yellow fill inside - same rounded path */}
+            <path
+              d="M 15 115
+                 Q 30 106 45 98
+                 Q 58 103 70 107
+                 Q 82 91 100 72
+                 Q 115 78 125 82
+                 Q 150 50 175 20"
+              stroke="url(#yellowFill)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+
+            {/* Arrowhead - straight lines forming a V */}
+            <path
+              d="M 175 20 L 158 26 M 175 20 L 172 35"
+              stroke="url(#redOutline)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#neonFilter)"
+              opacity="0.95"
+            />
+            
+            <path
+              d="M 175 20 L 158 26 M 175 20 L 172 35"
+              stroke="url(#yellowFill)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+
+            {/* Bright tip - subtle glow */}
+            <circle cx="175" cy="20" r="1.5" fill="#FF3333" opacity="0.7" />
+            <circle cx="175" cy="20" r="0.8" fill="#FFD700" opacity="0.6" />
           </svg>
 
           <h1 className="font-display font-extrabold text-[clamp(24px,6vw,40px)] leading-[1.12] tracking-tight max-w-[16ch] relative">
@@ -118,7 +206,6 @@ export function HomeHeroCard() {
           <AdvisorButtons className="mt-5" />
         </div>
 
-        {/* Qui sommes-nous - separate card right under the hero, per reference. */}
         <Link
           href="/notre-equipe"
           className="card mt-4 p-4 md:p-5 flex items-center gap-4 group hover:border-gold/40 transition-colors"
