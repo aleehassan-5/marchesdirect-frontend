@@ -21,6 +21,8 @@ const config: Config = {
         "brand-dark-ink": "var(--brand-dark-ink)",
         warning: "var(--warning)",
         danger: "var(--danger)",
+        success: "var(--success)",
+        "success-ink": "var(--success-ink)",
       },
       fontFamily: {
         display: ["var(--font-display)"],

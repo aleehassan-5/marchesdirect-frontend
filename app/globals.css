@@ -27,6 +27,8 @@ html[data-theme="dark"] {
   --card-3: #f87f30;
   --warning: #f87f30;
   --danger: #e0573a;
+  --success: #3fb865;
+  --success-ink: #0c1929;
 }
 
 html[data-theme="light"] {
@@ -48,6 +50,8 @@ html[data-theme="light"] {
   --card-3: #f87f30;
   --warning: #b5651f;
   --danger: #a3452a;
+  --success: #2f9653;
+  --success-ink: #fcffff;
 }
 
 * { box-sizing: border-box; }
@@ -143,6 +147,7 @@ body {
 .badge-valid { color: var(--ink-soft); background: color-mix(in srgb, var(--ink-soft) 14%, transparent); }
 .badge-warning { color: var(--warning); background: color-mix(in srgb, var(--warning) 16%, transparent); }
 .badge-danger { color: var(--danger); background: color-mix(in srgb, var(--danger) 16%, transparent); }
+.badge-success { color: var(--success); background: color-mix(in srgb, var(--success) 16%, transparent); }
 
 /* AI draft / human-review-required indicator: kept in the black/gold palette on purpose,
    never the purple/blue "AI" look. */
