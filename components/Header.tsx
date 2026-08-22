@@ -31,8 +31,8 @@ export function Header() {
     { href: "/appels-doffres", label: t("nav_tenders") },
     { href: "/marches-publics", label: t("nav_public") },
     { href: "/sous-traitance", label: t("nav_subcontract") },
-    { href: "/tarifs", label: t("nav_pricing") },
     { href: "/comment-ca-marche", label: t("nav_how_it_works") },
+    { href: "/tarifs", label: t("nav_pricing") },
   ];
 
   // On mobile, the primary destinations (home/search/dashboard/profile) live in the
