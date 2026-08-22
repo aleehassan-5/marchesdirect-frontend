@@ -7,24 +7,33 @@ import { useTranslation } from "@/lib/i18n";
 
 const rowIcons: Record<JourneyKey, JSX.Element> = {
   "marches-publics": (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 10l9-6 9 6" />
-      <path d="M4 10v9M8 10v9M12 10v9M16 10v9M20 10v9" />
-      <path d="M2.5 19.5h19" />
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9.5L12 4l9 5.5" />
+      <path d="M2.5 9.5h19" />
+      <path d="M5 10.5v8.5M9 10.5v8.5M12 10.5v8.5M15 10.5v8.5M19 10.5v8.5" />
+      <path d="M2.5 20h19" />
     </svg>
   ),
   "appels-doffres": (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="10" width="7" height="10" />
-      <rect x="12" y="4" width="9" height="16" />
-      <path d="M5.5 13h2M5.5 16h2M14.5 7h4M14.5 10h4M14.5 13h4M14.5 16h4" />
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      {/* Shorter front tower, left */}
+      <rect x="2.5" y="12" width="7.5" height="8" />
+      <path d="M4.7 14.2h1.1M7.2 14.2h1.1M4.7 16.7h1.1M7.2 16.7h1.1" />
+      {/* Taller back tower, right, with a stepped rooftop */}
+      <path d="M11.5 20V8.5h5V6.5h4V20z" />
+      <path d="M13.3 10.5h1M13.3 13h1M13.3 15.5h1M17 8.5h1M17 11h1M17 13.5h1M17 16h1" />
     </svg>
   ),
   "sous-traitance": (
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2 12l4-3 3.5 2.5L14 8l4 3" />
-      <path d="M6 9l3 3-1.5 1.5a1.6 1.6 0 0 1-2.3 0 1.6 1.6 0 0 1 0-2.3L9 7.5" />
-      <path d="M18 9l-3 3 1.5 1.5a1.6 1.6 0 0 0 2.3 0 1.6 1.6 0 0 0 0-2.3L15 7.5" />
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {/* Two forearms meeting in the middle, each with a short cuff tick,
+          connected by a simple zigzag clasp - kept bold and simple so it
+          stays legible at 24px, matching the reference's icon weight. */}
+      <path d="M2 15.5L8.5 11" />
+      <path d="M1.2 13.2L3.2 16.6" />
+      <path d="M22 15.5L15.5 11" />
+      <path d="M22.8 13.2L20.8 16.6" />
+      <path d="M8.5 11L10.3 13L12 11.3L13.7 13L15.5 11" />
     </svg>
   ),
 };
@@ -205,18 +214,18 @@ export function HomeHeroCard() {
           <div className="mt-5 flex flex-row gap-2 md:gap-3 flex-wrap">
             {/* First button - Orange background, white text */}
             <Link
-              href="/prendre-rendez-vous"
+              href="/contact"
               className="inline-flex items-center justify-center px-5 py-3 md:px-8 md:py-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-colors text-xs md:text-base whitespace-nowrap"
             >
-              {t("Book Appointment") || "Prendre rendez-vous"}
+              {t("home_advisor_book")}
             </Link>
-            
+
             {/* Second button - Dark blue background (matching card), orange text and border */}
             <Link
-              href="/etre-rappele"
+              href="/contact"
               className="inline-flex items-center justify-center px-5 py-3 md:px-8 md:py-4 bg-[#0B1A33] hover:bg-[#132A4F] text-orange-400 border border-orange-500/60 font-semibold rounded-lg transition-colors text-xs md:text-base whitespace-nowrap"
             >
-              {t("Get Called Back") || "Être rappelé"}
+              {t("cta_callback")}
             </Link>
           </div>
         </div>
