@@ -31,13 +31,17 @@ export const dict: Dict = {
 
   // Homepage
   home_eyebrow: { fr: "3 flux d'opportunites", en: "3 opportunity streams" },
-  home_title_1: { fr: "Les marches ?", en: "Public tenders?" },
+  home_title_1: { fr: "Votre prochaine opportunite", en: "Your next opportunity" },
   home_hero_desc: {
     fr: "Appels d'offres, marches publics et opportunites de sous-traitance adaptes a votre entreprise.",
     en: "Tenders, public procurement, and subcontracting opportunities matched to your business.",
   },
   home_title_gold: { fr: "appels d'offres.", en: "tenders." },
-  home_title_2: { fr: "On vous les apporte sur un plateau.", en: "We bring them to you on a plate." },
+  home_title_2: { fr: "commence ici.", en: "starts here." },
+  home_hero_sub: {
+    fr: "Choisissez votre parcours ou echangez avec un conseiller Marches Direct.",
+    en: "Choose your path or speak with a Marches Direct advisor.",
+  },
   home_subtitle: {
     fr: "Marches publics, appels d'offres prives et sous-traitance BTP &mdash; classes et recommandes automatiquement selon votre metier, votre rayon d'action et vos disponibilites.",
     en: "Public procurement, private tenders and construction subcontracting &mdash; automatically classified and recommended based on your trade, working radius and availability.",
@@ -118,9 +122,10 @@ export const dict: Dict = {
   home_advisor_book: { fr: "Prendre rendez-vous", en: "Book an appointment" },
   home_who_title: { fr: "Qui sommes-nous ?", en: "Who are we?" },
   home_who_body: {
-    fr: "Marches Direct, c'est une equipe experte et passionnee, dediee a votre reussite sur les marches publics. Nous vous accompagnons a chaque etape, de la recherche a la signature.",
-    en: "Marches Direct is an expert, passionate team dedicated to your success in public procurement. We support you at every step, from search to signature.",
+    fr: "Une equipe experte a vos cotes, jusqu'a la signature de vos premiers marches.",
+    en: "An expert team by your side, through to the signature of your first contracts.",
   },
+  home_who_discover: { fr: "Decouvrir Marches Direct", en: "Discover Marches Direct" },
 
   // Journey listing page
   journey_filter_trade: { fr: "Tous les metiers", en: "All trades" },
