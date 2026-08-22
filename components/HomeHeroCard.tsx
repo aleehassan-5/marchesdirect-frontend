@@ -57,14 +57,41 @@ export function HomeHeroCard() {
             className="pointer-events-none absolute right-0 top-0 w-[46%] max-w-[220px] h-auto opacity-90"
             fill="none"
           >
+            <defs>
+              <filter id="heroArrowGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="4.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <radialGradient id="heroArrowSpark" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="var(--gold)" stopOpacity="0.9" />
+                <stop offset="60%" stopColor="var(--gold)" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="var(--gold)" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+
+            {/* Soft glow halo behind the arrowhead */}
+            <circle cx="185" cy="15" r="22" fill="url(#heroArrowSpark)" />
+
             <path
               d="M10 110 L55 85 L85 100 L120 55 L150 65 L185 15"
               stroke="var(--gold)"
               strokeWidth="4"
               strokeLinecap="round"
               strokeLinejoin="round"
+              filter="url(#heroArrowGlow)"
             />
-            <path d="M185 15 L170 20 M185 15 L182 32" stroke="var(--gold)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M185 15 L170 20 M185 15 L182 32" stroke="var(--gold)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" filter="url(#heroArrowGlow)" />
+
+            {/* Sparkle/shine burst at the tip */}
+            <g stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" filter="url(#heroArrowGlow)">
+              <path d="M185 3 L185 -3" opacity="0.9" />
+              <path d="M197 15 L203 15" opacity="0.7" />
+              <path d="M193.5 6.5 L197.5 2.5" opacity="0.8" />
+            </g>
+            <circle cx="185" cy="15" r="2.4" fill="var(--gold)" filter="url(#heroArrowGlow)" />
           </svg>
 
           <h1 className="font-display font-extrabold text-[clamp(24px,6vw,40px)] leading-[1.12] tracking-tight max-w-[16ch] relative">
